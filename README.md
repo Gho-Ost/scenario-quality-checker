@@ -1,4 +1,4 @@
-Latest build status: ![last integration](https://github.com/Gho-Ost/scenario-quality-checker/actions/workflows/integration.yml/badge.svg)
+Latest build status:     ![last integration](https://github.com/Gho-Ost/scenario-quality-checker/actions/workflows/integration.yml/badge.svg)
 
 # Scenario Quality Checker (SQC)
 
