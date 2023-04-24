@@ -5,7 +5,7 @@ Latest build status:
 
 For analysts documenting functional requirements with scenarios, our SQC application will provide quantitative information and enable detection of problems in functional requirements written in the form of scenarios. The application will be available via GUI and also as a remote API, thanks to which it can be integrated with existing tools.
 
-Format of scenarios to be put into the Readme.md project:
+Format of scenarios:
 - The scenario includes a header specifying its title and actors (external and system)
 - The scenario consists of steps (each step contains text)
 - Steps can contain sub-scenarios (any level of nesting)
