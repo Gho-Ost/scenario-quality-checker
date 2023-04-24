@@ -14,6 +14,7 @@
     <groupId>pl.put.poznan</groupId>
     <artifactId>io-project-architecture</artifactId>
     <version>0.1</version>
+    <name>Scenario Quality Checker</name>
 
 	<properties>
         <java.version>11</java.version>
