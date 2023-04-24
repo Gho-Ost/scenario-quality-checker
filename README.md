@@ -26,3 +26,5 @@ System actor: System
         - System informs about the correct addition of an instance and presents the updated list of instances.
 - Librarian confirms book addition.
 - System informs about the correct addition of the book.
+
+![last integration](https://github.com/Gho-Ost/scenario-quality-checker/actions/workflows/integration.yml/badge.svg)
