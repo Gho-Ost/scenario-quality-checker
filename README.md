@@ -11,10 +11,10 @@ Format of scenarios:
 - Steps can contain sub-scenarios (any level of nesting)
 - The steps may start with the keywords IF, ELSE, FOR EACH
 
-Example:
-Title: Book addition
-Actors:  Librarian
-System actor: System
+Example:<br>
+Title: Book addition<br>
+Actors:  Librarian<br>
+System actor: System<br>
 
 - Librarian selects options to add a new book item
 - A form is displayed.
