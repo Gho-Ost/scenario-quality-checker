@@ -1,9 +1,6 @@
 package pl.put.poznan.checker.logic;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Scenario implements Visitable{
     private String title;
