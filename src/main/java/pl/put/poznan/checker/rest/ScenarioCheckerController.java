@@ -2,13 +2,13 @@ package pl.put.poznan.checker.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import pl.put.poznan.checker.logic.Scenario;
 import pl.put.poznan.checker.logic.ScenarioChecker;
 
 import java.util.Arrays;
 
 
 @RestController
-@RequestMapping("/{text}")
 public class ScenarioCheckerController {
 
     private static final Logger logger = LoggerFactory.getLogger(ScenarioCheckerController.class);
@@ -39,6 +39,12 @@ public class ScenarioCheckerController {
         return checker.check(text);
     }
 
+    @PostMapping("/scenario")
+    Scenario newScenario(@RequestBody Scenario newScenario) {
+        System.out.println(newScenario.getName());
+        System.out.println(newScenario.getRole());
+        return newScenario;
+    }
 }
 
 
