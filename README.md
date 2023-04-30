@@ -29,3 +29,29 @@ System actor: System<br>
         - System informs about the correct addition of an instance and presents the updated list of instances.
 - Librarian confirms book addition.
 - System informs about the correct addition of the book.
+
+Corresponding JSON input format:<br>
+{
+	"Title": "Book addition",
+	"Actors": ["Librarian"],
+	"System actor": "System",
+	"steps": [
+		{"Librarian": "selects options to add a new book item"},
+		"A form is displayed",
+		{"Librarian": "provides the details of the book."},
+		{"IF": {"Librarian": "wishes to add copies of the book"}},
+		[
+			{"Librarian": "chooses to define instances"},
+			{"System": "presents defined instances"},
+			{"FOR EACH": "instance:"},
+			[
+				{"Librarian": "chooses to add an instance"},
+				{"System": "prompts to enter the instance details"},
+				{"Librarian": "enters the instance details and confirms them."},
+				{"System": "informs about the correct addition of an instance and presents the updated list of instances."}
+			]
+		],
+		{"Librarian": "confirms book addition."},
+		{"System": "informs about the correct addition of the book."}
+	]
+}
