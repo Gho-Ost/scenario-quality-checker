@@ -41,7 +41,7 @@ Corresponding JSON input format:<br>
 		"A form is displayed",
 		{"Librarian": "provides the details of the book."},
 		{"IF": {"Librarian": "wishes to add copies of the book"}},
-		[<br>
+		[
 			{"Librarian": "chooses to define instances"},
 			{"System": "presents defined instances"},
 			{"FOR EACH": "instance:"},
