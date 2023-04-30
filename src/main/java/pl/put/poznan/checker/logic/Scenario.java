@@ -2,7 +2,7 @@ package pl.put.poznan.checker.logic;
 
 import java.util.ArrayList;
 
-public class Scenario {
+public class Scenario implements Visitable{
     private String title;
     private String[] actors;
     private String systemActor;
@@ -50,4 +50,8 @@ public class Scenario {
     }
 
 
+    public void accept(Visitor visitor) {
+        //TODO: Implement further logic here
+        visitor.visit(this);
+    }
 }
