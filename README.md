@@ -31,6 +31,7 @@ System actor: System<br>
 - System informs about the correct addition of the book.
 
 Corresponding JSON input format:<br>
+```json
 {
 	"Title": "Book addition",<br>
 	"Actors": ["Librarian"],<br>
@@ -55,3 +56,4 @@ Corresponding JSON input format:<br>
 		{"System": "informs about the correct addition of the book."}<br>
 	]<br>
 }
+```
