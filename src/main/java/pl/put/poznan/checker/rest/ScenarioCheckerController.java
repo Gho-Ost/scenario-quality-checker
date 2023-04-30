@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.checker.logic.Scenario;
 import pl.put.poznan.checker.logic.ScenarioChecker;
+import pl.put.poznan.checker.logic.Step;
 
 import java.util.Arrays;
 
@@ -41,8 +42,15 @@ public class ScenarioCheckerController {
 
     @PostMapping("/scenario")
     Scenario newScenario(@RequestBody Scenario newScenario) {
-        System.out.println(newScenario.getName());
-        System.out.println(newScenario.getRole());
+        System.out.println(newScenario.getTitle());
+        for (String s : newScenario.getActors()){
+            System.out.println(s);
+        }
+        System.out.println(newScenario.getSystemActor());
+        System.out.println(newScenario.getSteps());
+//        for (Step s : newScenario.getSteps()) {
+//            System.out.println(s.getActor());
+//        }
         return newScenario;
     }
 }
