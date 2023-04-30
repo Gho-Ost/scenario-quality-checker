@@ -32,26 +32,26 @@ System actor: System<br>
 
 Corresponding JSON input format:<br>
 {
-	"Title": "Book addition",
-	"Actors": ["Librarian"],
-	"System actor": "System",
-	"steps": [
-		{"Librarian": "selects options to add a new book item"},
-		"A form is displayed",
-		{"Librarian": "provides the details of the book."},
-		{"IF": {"Librarian": "wishes to add copies of the book"}},
-		[
-			{"Librarian": "chooses to define instances"},
-			{"System": "presents defined instances"},
-			{"FOR EACH": "instance:"},
-			[
-				{"Librarian": "chooses to add an instance"},
-				{"System": "prompts to enter the instance details"},
-				{"Librarian": "enters the instance details and confirms them."},
-				{"System": "informs about the correct addition of an instance and presents the updated list of instances."}
-			]
-		],
-		{"Librarian": "confirms book addition."},
-		{"System": "informs about the correct addition of the book."}
-	]
+	"Title": "Book addition",<br>
+	"Actors": ["Librarian"],<br>
+	"System actor": "System",<br>
+	"steps": [<br>
+		{"Librarian": "selects options to add a new book item"},<br>
+		"A form is displayed",<br>
+		{"Librarian": "provides the details of the book."},<br>
+		{"IF": {"Librarian": "wishes to add copies of the book"}},<br>
+		[<br>
+			{"Librarian": "chooses to define instances"},<br>
+			{"System": "presents defined instances"},<br>
+			{"FOR EACH": "instance:"},<br>
+			[<br>
+				{"Librarian": "chooses to add an instance"},<br>
+				{"System": "prompts to enter the instance details"},<br>
+				{"Librarian": "enters the instance details and confirms them."},<br>
+				{"System": "informs about the correct addition of an instance and presents the updated list of instances."}<br>
+			]<br>
+		],<br>
+		{"Librarian": "confirms book addition."},<br>
+		{"System": "informs about the correct addition of the book."}<br>
+	]<br>
 }
