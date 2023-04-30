@@ -33,9 +33,9 @@ System actor: System<br>
 Corresponding JSON input format:<br>
 ```json
 {
-	"Title": "Book addition",
-	"Actors": ["Librarian"],
-	"System actor": "System",
+	"title": "Book addition",
+	"actors": ["Librarian"],
+	"systemActor": "System",
 	"steps": [
 		{"Librarian": "selects options to add a new book item"},
 		"A form is displayed",
