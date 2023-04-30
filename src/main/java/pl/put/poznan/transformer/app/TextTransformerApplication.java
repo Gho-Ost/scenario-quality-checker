@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TextTransformerApplication {
 
     public static void main(String[] args) {
+        //Temporary commend added to test continuous integration (delete later)
         SpringApplication.run(TextTransformerApplication.class, args);
     }
 }
