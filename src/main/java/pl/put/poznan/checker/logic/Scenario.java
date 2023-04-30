@@ -1,6 +1,6 @@
 package pl.put.poznan.checker.logic;
 
-public class Scenario {
+public class Scenario implements Visitable{
     private String role;
     private String name;
 
@@ -15,5 +15,10 @@ public class Scenario {
 
     public String getRole(){
         return this.role;
+    }
+
+    public void accept(Visitor visitor) {
+        //TODO: Implement further logic here
+        visitor.visit(this);
     }
 }
