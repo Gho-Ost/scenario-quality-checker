@@ -5,7 +5,7 @@ Latest build status:
 
 For analysts documenting functional requirements with scenarios, our SQC application will provide quantitative information and enable detection of problems in functional requirements written in the form of scenarios. The application will be available via GUI and also as a remote API, thanks to which it can be integrated with existing tools.
 
-Backlog sheet access: [backlog](https://docs.google.com/spreadsheets/d/10xPEoCOPM9XNCSuVxjXvBpm4q6dU80llhul9FbcC-B8/edit?usp=sharing)
+Backlog sheet access: [backlog](https://docs.google.com/spreadsheets/d/10xPEoCOPM9XNCSuVxjXvBpm4q6dU80llhul9FbcC-B8/edit?usp=sharing)<br>
 Definition of Done sheet: [DoD](https://docs.google.com/spreadsheets/d/1tAZz23FwqmvO13xXP5R6w4fjLJbzPUflcsjcx2UOEy8/edit?usp=sharing)
 
 Format of scenarios:
