@@ -1,5 +1,4 @@
 package pl.put.poznan.checker.rest;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -45,7 +44,7 @@ public class ScenarioCheckerController {
     }
 
     @PostMapping("/scenario")
-    Scenario newScenario(@RequestBody String scenarioContent) {
+    public Scenario newScenario(@RequestBody String scenarioContent) {
         Scenario newScenario = null;
 
         try {
@@ -54,19 +53,7 @@ public class ScenarioCheckerController {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-
-        System.out.println("Title: " + newScenario.getTitle());
-        for (String actor : newScenario.getActors()) {
-            System.out.println("Actor: " + actor);
-        }
-        System.out.println("System actor: " + newScenario.getSystemActor());
-        for (Step step : newScenario.getSteps()) {
-            System.out.println("========NEXT STEP=======");
-            System.out.println("Actor: " + step.getActor());
-            System.out.println("Keyword: " + step.getKeyword());
-            System.out.println("Action: " + step.getAction());
-            step.printSubsteps();
-        }
+         newScenario.printScenario();
 
         return newScenario;
     }

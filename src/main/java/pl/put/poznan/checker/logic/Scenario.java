@@ -32,6 +32,17 @@ public class Scenario implements Visitable{
         this.steps = steps;
     }
 
+    public void printScenario(){
+        System.out.println("Title: " + this.title);
+        for (String actor : this.actors) {
+            System.out.println("Actor: " + actor);
+        }
+        System.out.println("System actor: " + this.systemActor);
+
+        for (Step step : this.steps){
+            step.printStep();
+        }
+    }
 
     public String getTitle() {
         return title;

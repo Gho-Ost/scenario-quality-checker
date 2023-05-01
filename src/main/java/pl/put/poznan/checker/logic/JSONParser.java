@@ -65,16 +65,7 @@ public class JSONParser {
                 if (step instanceof JSONObject) {
                     JSONObject stepObj = (JSONObject) step;
                     String key = stepObj.keys().next().toString();
-                    if (key.equals("IF")){
-                        JSONObject conditionObj = stepObj.getJSONObject(key);
-                        String conditionKey = conditionObj.keys().next().toString();
-                        String conditionValue = conditionObj.getString(conditionKey);
-                        String condition = conditionKey + ": " + conditionValue;
-
-                        System.out.println("Key: " + key);
-                        System.out.println("Condition: " + condition);
-
-                    } else if (key.equals("ELSE")){
+                    if (key.equals("IF") || key.equals("ELSE")){
                         JSONObject conditionObj = stepObj.getJSONObject(key);
                         String conditionKey = conditionObj.keys().next().toString();
                         String conditionValue = conditionObj.getString(conditionKey);
