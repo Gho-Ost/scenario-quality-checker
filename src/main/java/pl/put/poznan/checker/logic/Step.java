@@ -7,20 +7,21 @@ public class Step implements Visitable{
     private String actor;
     private String keyword;
     private String action;
-    private int level=0;
+    private String stepLevel;
 
     private ArrayList<Step> substeps;
 
-    public Step(String actor, String keyword, String action, ArrayList<Step> substeps) {
+    public Step(String actor, String keyword, String action, ArrayList<Step> substeps, String stepLevel) {
         this.actor = actor;
         this.keyword = keyword;
         this.action = action;
         this.substeps = substeps;
+        this.stepLevel = stepLevel;
     }
 
     public void printStep(){
         System.out.println("======NEW STEP=======");
-        System.out.println("Level: " + this.level);
+        System.out.println("Level: " + this.stepLevel);
         System.out.println("Actor: " + this.actor);
         System.out.println("Keyword: " + this.keyword);
         System.out.println("Action: " + this.action);
@@ -31,7 +32,7 @@ public class Step implements Visitable{
         if (this.substeps != null){
             for (Step step : this.substeps){
                 System.out.println("========NEXT SUBSTEP=======");
-                System.out.println("Level: " + step.getLevel());
+                System.out.println("Level: " + step.getStepLevel());
                 System.out.println("Actor: " + step.getActor());
                 System.out.println("Keyword: " + step.getKeyword());
                 System.out.println("Action: " + step.getAction());
@@ -69,12 +70,12 @@ public class Step implements Visitable{
     }
 
 
-    public int getLevel() {
-        return level;
+    public String getStepLevel() {
+        return stepLevel;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setStepLevel(String stepLevel) {
+        this.stepLevel = stepLevel;
     }
 
 

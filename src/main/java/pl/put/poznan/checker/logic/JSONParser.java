@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -101,12 +102,12 @@ public class JSONParser {
             actors[i] = actorsArray.getString(i);
         }
 
-        ArrayList<Step> steps = parseScenarioSteps(scenarioSteps);
+        ArrayList<Step> steps = parseScenarioSteps(scenarioSteps, "1", 0);
 
         return new Scenario(title, actors, systemActor, steps);
     }
 
-    private static ArrayList<Step> parseScenarioSteps(JSONArray steps){
+    private static ArrayList<Step> parseScenarioSteps(JSONArray steps, String stepLevel, int level){
         ArrayList<Step> newSteps = new ArrayList<Step>();
 
         for (int i = 0; i < steps.length(); i++) {
@@ -153,13 +154,29 @@ public class JSONParser {
 
                 // if next object is an array of substeps
                 if (i < steps.length()-1 && steps.get(i+1) instanceof JSONArray) {
-                    substeps = parseScenarioSteps((JSONArray) steps.get(i+1));
+                    substeps = parseScenarioSteps((JSONArray) steps.get(i+1), stepLevel+".1", level+1);
                 }
             } catch (JSONException e1) {
                 throw new RuntimeException(e1);
             }
 
-            newSteps.add(new Step(actor, keyword, action, substeps));
+            newSteps.add(new Step(actor, keyword, action, substeps, stepLevel));
+
+            String [] splitStepLevel = stepLevel.split("\\.");
+            System.out.println(stepLevel);
+            System.out.println(Arrays.toString(splitStepLevel));
+            if (splitStepLevel.length > 0){
+                String valueToIncrement = splitStepLevel[level];
+                Integer newValue = Integer.parseInt(valueToIncrement);
+                newValue += 1;
+                splitStepLevel[level] = Integer.toString(newValue);
+                stepLevel = String.join(".", splitStepLevel);
+            }
+            else{
+                Integer newValue = Integer.parseInt(stepLevel);
+                newValue += 1;
+                stepLevel = Integer.toString(newValue);
+            }
         }
         return newSteps;
     }
