@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-//TODO: Fix bug that occurs when length of array with FOR EACH is equal to 1
 public class JSONParser {
     public static void main(String[] args) {
         String content = null;
@@ -134,13 +133,17 @@ public class JSONParser {
 
                     // if one of keyword statements
                     if (key.equals("IF") || key.equals("ELSE") || key.equals("FOR EACH")){
-                        // TODO should check if another object nested
-                        // gets the object of (actor:action)
-                        JSONObject conditionObj = stepObj.getJSONObject(key);
-                        keyword = key;
-                        actor = conditionObj.keys().next().toString();
-                        action = conditionObj.getString(actor);
-
+                        try{
+                            // try to get the inside object (actor:action)
+                            JSONObject conditionObj = stepObj.getJSONObject(key);
+                            keyword = key;
+                            actor = conditionObj.keys().next().toString();
+                            action = conditionObj.getString(actor);
+                        } catch (JSONException e2){
+                            // if no nested object
+                            keyword = key;
+                            action = stepObj.getString(key);
+                        }
                     }
                     // if is an actor action
                     else {
@@ -161,8 +164,8 @@ public class JSONParser {
                 if (i < steps.length()-1 && steps.get(i+1) instanceof JSONArray) {
                     substeps = parseScenarioSteps((JSONArray) steps.get(i+1));
                 }
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
+            } catch (JSONException e1) {
+                throw new RuntimeException(e1);
             }
 
             newSteps.add(new Step(actor, keyword, action, substeps));
