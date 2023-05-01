@@ -4,7 +4,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.checker.logic.Scenario;
 import pl.put.poznan.checker.logic.ScenarioChecker;
-import pl.put.poznan.checker.logic.Step;
 
 import java.util.Arrays;
 
