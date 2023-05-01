@@ -16,4 +16,8 @@ public class ScenarioCountVisitor implements Visitor{
         return stepCount;
     }
 
+    public void incrementDepth(){}
+
+    public void decrementDepth(){}
+
 }

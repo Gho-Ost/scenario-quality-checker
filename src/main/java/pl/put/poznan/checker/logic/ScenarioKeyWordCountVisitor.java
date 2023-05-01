@@ -16,4 +16,8 @@ public class ScenarioKeyWordCountVisitor implements Visitor{
     public int getKeyWordCount() {
         return keyWordCount;
     }
+
+    public void incrementDepth(){}
+
+    public void decrementDepth(){}
 }
