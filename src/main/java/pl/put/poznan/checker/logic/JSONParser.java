@@ -13,7 +13,7 @@ public class JSONParser {
     public static void main(String[] args) {
         String content = null;
         try {
-            content = new String(Files.readAllBytes(Paths.get("C:\\Users\\barte\\scenario-quality-checker\\src\\main\\java\\pl\\put\\poznan\\checker\\logic\\file.JSON")));
+            content = new String(Files.readAllBytes(Paths.get("C:\\Users\\Komputer\\scenario-quality-checker\\src\\main\\java\\pl\\put\\poznan\\checker\\logic\\file.JSON")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,6 +33,26 @@ public class JSONParser {
             System.out.println("\nSystem Actor: " + systemActor);
             System.out.println("Steps: ");
             parseSteps(steps);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        //Testing Visitor design pattern:
+        String content_2 = null;
+        try {
+            content_2 = new String(Files.readAllBytes(Paths.get("C:\\Users\\Komputer\\scenario-quality-checker\\src\\main\\java\\pl\\put\\poznan\\checker\\logic\\file.JSON")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONObject obj_2 = null;
+        try {
+            obj_2 = new JSONObject(content_2);
+        }catch (JSONException e) {
+            throw new RuntimeException(e);}
+        try {
+            Scenario test_scenario=parseScenarioObject(obj_2);
+            ScenarioCountVisitor test_visitor=new ScenarioCountVisitor();
+            test_scenario.accept(test_visitor);
+            System.out.println("Scenario Count= "+test_visitor.getStepCount());
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }

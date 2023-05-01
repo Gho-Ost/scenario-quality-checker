@@ -17,8 +17,10 @@ public class Scenario implements Visitable{
 
     public void accept(Visitor visitor) {
         visitor.visit(this);
-        for(Object step: steps){
-            ((Step)step).accept(visitor);
+        if(steps != null){
+            for(Object step: steps){
+                ((Step)step).accept(visitor);
+            }
         }
     }
 
