@@ -6,16 +6,34 @@ import java.util.ArrayList;
 public class Step implements Visitable{
     private String actor;
     private String keyword;
+    private String action;
     private ArrayList<Step> substeps;
 
-    public Step(String actor) {
-        this.actor = actor;
-    }
-
-    public Step(String actor, String keyword, ArrayList<Step> substeps) {
+    public Step(String actor, String keyword, String action, ArrayList<Step> substeps) {
         this.actor = actor;
         this.keyword = keyword;
+        this.action = action;
         this.substeps = substeps;
+    }
+
+    public void printSubsteps(){
+        if (this.substeps != null){
+            for (Step step : this.substeps){
+                System.out.println("========NEXT SUBSTEP=======");
+                System.out.println(step.getKeyword());
+                System.out.println(step.getActor());
+                System.out.println(step.getAction());
+                step.printSubsteps();
+            }
+        }
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public String getActor() {

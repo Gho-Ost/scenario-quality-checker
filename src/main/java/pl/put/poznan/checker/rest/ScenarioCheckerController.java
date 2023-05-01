@@ -1,9 +1,14 @@
 package pl.put.poznan.checker.rest;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import pl.put.poznan.checker.logic.JSONParser;
 import pl.put.poznan.checker.logic.Scenario;
 import pl.put.poznan.checker.logic.ScenarioChecker;
+import pl.put.poznan.checker.logic.Step;
 
 import java.util.Arrays;
 
@@ -40,16 +45,29 @@ public class ScenarioCheckerController {
     }
 
     @PostMapping("/scenario")
-    Scenario newScenario(@RequestBody Scenario newScenario) {
+    Scenario newScenario(@RequestBody String scenarioContent) {
+        Scenario newScenario = null;
+
+        try {
+            JSONObject scenarioObj = new JSONObject(scenarioContent);
+            newScenario = JSONParser.parseScenarioObject(scenarioObj);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
         System.out.println(newScenario.getTitle());
-        for (String s : newScenario.getActors()){
-            System.out.println(s);
+        for (String actor : newScenario.getActors()) {
+            System.out.println(actor);
         }
         System.out.println(newScenario.getSystemActor());
-        System.out.println(newScenario.getSteps());
-//        for (Step s : newScenario.getSteps()) {
-//            System.out.println(s.getActor());
-//        }
+        for (Step step : newScenario.getSteps()) {
+            System.out.println("========NEXT STEP=======");
+            System.out.println(step.getActor());
+            System.out.println(step.getKeyword());
+            System.out.println(step.getAction());
+            step.printSubsteps();
+        }
+
         return newScenario;
     }
 }

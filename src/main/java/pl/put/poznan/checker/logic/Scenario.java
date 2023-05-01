@@ -6,11 +6,9 @@ public class Scenario implements Visitable{
     private String title;
     private String[] actors;
     private String systemActor;
+    private ArrayList<Step> steps;
 
-    // TEST steps as list of step objects idk if this would work
-    private ArrayList<Object> steps;
-
-    public Scenario(String title, String[] actors, String systemActor, ArrayList<Object> steps) {
+    public Scenario(String title, String[] actors, String systemActor, ArrayList<Step> steps) {
         this.title = title;
         this.actors = actors;
         this.systemActor = systemActor;
@@ -22,11 +20,11 @@ public class Scenario implements Visitable{
         visitor.visit(this);
     }
 
-    public ArrayList<Object> getSteps() {
+    public ArrayList<Step> getSteps() {
         return steps;
     }
 
-    public void setSteps(ArrayList<Object> steps) {
+    public void setSteps(ArrayList<Step> steps) {
         this.steps = steps;
     }
 
