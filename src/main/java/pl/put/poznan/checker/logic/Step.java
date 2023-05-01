@@ -20,9 +20,9 @@ public class Step implements Visitable{
         if (this.substeps != null){
             for (Step step : this.substeps){
                 System.out.println("========NEXT SUBSTEP=======");
-                System.out.println(step.getKeyword());
-                System.out.println(step.getActor());
-                System.out.println(step.getAction());
+                System.out.println("Actor: " + step.getActor());
+                System.out.println("Keyword: " + step.getKeyword());
+                System.out.println("Action: " + step.getAction());
                 step.printSubsteps();
             }
         }

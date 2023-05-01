@@ -55,16 +55,16 @@ public class ScenarioCheckerController {
             throw new RuntimeException(e);
         }
 
-        System.out.println(newScenario.getTitle());
+        System.out.println("Title: " + newScenario.getTitle());
         for (String actor : newScenario.getActors()) {
-            System.out.println(actor);
+            System.out.println("Actor: " + actor);
         }
-        System.out.println(newScenario.getSystemActor());
+        System.out.println("System actor: " + newScenario.getSystemActor());
         for (Step step : newScenario.getSteps()) {
             System.out.println("========NEXT STEP=======");
-            System.out.println(step.getActor());
-            System.out.println(step.getKeyword());
-            System.out.println(step.getAction());
+            System.out.println("Actor: " + step.getActor());
+            System.out.println("Keyword: " + step.getKeyword());
+            System.out.println("Action: " + step.getAction());
             step.printSubsteps();
         }
 
