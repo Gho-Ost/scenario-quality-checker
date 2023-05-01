@@ -113,7 +113,9 @@ public class JSONParser {
                     String key = stepObj.keys().next().toString();
 
                     // if one of keyword statements
-                    if (key.equals("IF") || key.equals("ELSE")){
+                    if (key.equals("IF") || key.equals("ELSE") || key.equals("FOR EACH")){
+                        // TODO should check if another object nested
+                        // gets the object of (actor:action)
                         JSONObject conditionObj = stepObj.getJSONObject(key);
                         keyword = key;
                         actor = conditionObj.keys().next().toString();
@@ -126,13 +128,18 @@ public class JSONParser {
                         action = stepObj.getString(key);
                     }
                 }
-                // is another substep
+                // is substep array
                 else if (stepObject instanceof JSONArray) {
-                    substeps = parseScenarioSteps((JSONArray) stepObject);
+                    continue;
                 }
                 // is a lone action
                 else {
                     action = stepObject.toString();
+                }
+
+                // if next object is an array of substeps
+                if (i < steps.length()-1 && steps.get(i+1) instanceof JSONArray) {
+                    substeps = parseScenarioSteps((JSONArray) steps.get(i+1));
                 }
             } catch (JSONException e) {
                 throw new RuntimeException(e);
@@ -142,6 +149,4 @@ public class JSONParser {
         }
         return newSteps;
     }
-
-
 }
