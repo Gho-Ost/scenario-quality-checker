@@ -16,8 +16,10 @@ public class Scenario implements Visitable{
     }
 
     public void accept(Visitor visitor) {
-        //TODO: Implement further logic here
         visitor.visit(this);
+        for(Object step: steps){
+            ((Step)step).accept(visitor);
+        }
     }
 
     public ArrayList<Step> getSteps() {

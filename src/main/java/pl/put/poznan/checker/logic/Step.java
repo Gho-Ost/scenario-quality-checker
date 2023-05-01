@@ -61,6 +61,9 @@ public class Step implements Visitable{
     }
 
     public void accept(Visitor visitor){
-        //TODO: fill
+        visitor.visit(this);
+        for(Step step: substeps){
+            step.accept(visitor);
+        }
     }
 }
