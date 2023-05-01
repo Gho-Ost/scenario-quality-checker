@@ -50,9 +50,9 @@ public class JSONParser {
             throw new RuntimeException(e);}
         try {
             Scenario test_scenario=parseScenarioObject(obj_2);
-            ScenarioCountVisitor test_visitor=new ScenarioCountVisitor();
+            ScenarioKeyWordCountVisitor test_visitor=new ScenarioKeyWordCountVisitor();
             test_scenario.accept(test_visitor);
-            System.out.println("Scenario Count= "+test_visitor.getStepCount());
+            System.out.println("Keyword Count= "+test_visitor.getKeyWordCount());
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
