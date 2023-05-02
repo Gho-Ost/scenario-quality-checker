@@ -50,7 +50,8 @@ public class JSONParser {
             throw new RuntimeException(e);}
         try {
             Scenario test_scenario=parseScenarioObject(obj_2);
-            ScenarioMissingActorVisitor test_visitor=new ScenarioMissingActorVisitor();
+            ScenarioLevelVisitor test_visitor=new ScenarioLevelVisitor();
+            test_visitor.setMaxLevel(2);
             test_scenario.accept(test_visitor);
             System.out.println("tested");
         } catch (JSONException e) {

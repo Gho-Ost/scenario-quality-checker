@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 //TODO: Test and review this implementation
 public class ScenarioLevelVisitor implements Visitor{
-    private int currentLevel = 1;
     private int maxLevel=1;
     private Scenario scenario;
     private ArrayList<Step> steps;
@@ -14,14 +13,15 @@ public class ScenarioLevelVisitor implements Visitor{
     }
 
     public void visit(Scenario scenario){
-        this.scenario.setTitle(scenario.getTitle());
-        this.scenario.setActors(scenario.getActors());
-        this.scenario.setSystemActor(scenario.getSystemActor());
+        this.scenario = new Scenario(scenario.getTitle(), scenario.getActors(),
+                scenario.getSystemActor(), null);
+        this.steps = new ArrayList<Step>();
     }
 
     public void visit(Step step){
-        if(this.currentLevel<=this.maxLevel){
-            if(this.currentLevel+1>this.maxLevel){
+        int currentLevel=step.getStepLevel().split("\\.").length;
+        if(currentLevel<=this.maxLevel){
+            if(currentLevel+1>this.maxLevel){
                 step.setSubsteps(null);
             }
             this.steps.add(step);
