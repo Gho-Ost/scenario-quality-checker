@@ -18,7 +18,14 @@ public class ScenarioTextDownloadVisitor implements Visitor {
         String systemActor = scenario.getSystemActor();
 
         result.append("Title: ").append(title).append("\n");
-        result.append("Actor: ").append(actors).append("\n");
+        result.append("Actors: [");
+        for (int i = 0; i < actors.length; i++) {
+            result.append(actors[i]);
+            if (i < actors.length - 1) {
+                result.append(", ");
+            }
+        }
+        result.append("]\n");
         result.append("System actor: ").append(systemActor).append("\n");
         result.append("Steps:\n");
     }
