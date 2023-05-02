@@ -37,7 +37,7 @@ System actor: System<br>
 - Librarian confirms book addition.
 - System informs about the correct addition of the book.
 
-Corresponding JSON input format:<br>
+### Corresponding JSON input format:<br>
 ```json
 {
 	"title": "Book addition",
