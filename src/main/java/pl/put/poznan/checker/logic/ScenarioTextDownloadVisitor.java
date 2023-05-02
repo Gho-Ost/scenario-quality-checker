@@ -14,24 +14,23 @@ public class ScenarioTextDownloadVisitor implements Visitor{
         System.out.println("Title: " + title);
         System.out.println("Actor: " + actors);
         System.out.println("System actor: " + systemActor);
-
-        printNumberedSteps(scenario.getSteps(), 1, 1);
-    }
-
-    private void printNumberedSteps(ArrayList<Step> steps, int parentStep, int level){
-        for (Step step : steps){
-
-            ArrayList<Step> substeps = step.getSubsteps();
-            if (substeps != null){
-                printNumberedSteps(substeps, parentStep, level++);
-            }
-
-            parentStep++;
-        }
+        System.out.println("Steps:");
     }
 
     @Override
     public void visit(Step step) {
+        String stepLevel = step.getStepLevel();
+        String keyword = step.getKeyword();
+        String actor = step.getActor();
 
+        System.out.print(String.format("%" + stepLevel.length()*2 + "s", stepLevel));
+
+        if (keyword != null){
+            System.out.print(" " + keyword);
+        }
+        if (actor != null){
+            System.out.print(" " + actor);
+        }
+        System.out.println(" " + step.getAction());
     }
 }
