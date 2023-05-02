@@ -9,16 +9,15 @@ public class ScenarioMissingActorVisitor implements Visitor{
     public void visit(Scenario scenario) {}
 
     public void visit(Step step) {
+        //ELSE and FOR EACH key-words by definition do not require an actor immediately afterwords
         if (step.getActor() == null) {
-            noActorSteps.add(step);
+            if(step.getKeyword()==null || (!step.getKeyword().equals("ELSE") && !step.getKeyword().equals("FOR EACH"))){
+                noActorSteps.add(step);
+            }
         }
     }
 
     public List<Step> getNoActorSteps() {
         return noActorSteps;
     }
-
-    public void incrementDepth(){}
-
-    public void decrementDepth(){}
 }

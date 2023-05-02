@@ -32,8 +32,4 @@ public class ScenarioLevelVisitor implements Visitor{
         scenario.setSteps(this.steps);
         return scenario;
     }
-
-    public void incrementDepth(){this.currentLevel+=1;}
-
-    public void decrementDepth(){this.currentLevel-=1;}
 }

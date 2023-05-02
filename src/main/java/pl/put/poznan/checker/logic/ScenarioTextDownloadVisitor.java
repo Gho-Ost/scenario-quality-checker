@@ -4,17 +4,6 @@ import java.util.ArrayList;
 
 //TODO change to new step level format
 public class ScenarioTextDownloadVisitor implements Visitor{
-
-    @Override
-    public void incrementDepth() {
-
-    }
-
-    @Override
-    public void decrementDepth() {
-
-    }
-
     @Override
     public void visit(Scenario scenario) {
         String title = scenario.getTitle();

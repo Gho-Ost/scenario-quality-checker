@@ -86,11 +86,9 @@ public class Step implements Visitable{
     public void accept(Visitor visitor){
         visitor.visit(this);
         if(substeps!=null){
-            visitor.incrementDepth();
             for(Step step: substeps){
                 step.accept(visitor);
             }
-            visitor.decrementDepth();
         }
     }
 }
