@@ -110,7 +110,7 @@ public class ScenarioCheckerController {
      * @return
      */
     @GetMapping("/scenarios/{title}/download")
-    public ResponseEntity<Resource> downloadScenario(@PathVariable("title")String title) {
+    public ResponseEntity<Resource> getDownloadScenario(@PathVariable("title")String title) {
         Scenario scenario=getScenario(title);
         ScenarioTextDownloadVisitor scenarioTextDownloadVisitor= new ScenarioTextDownloadVisitor();
         scenario.accept(scenarioTextDownloadVisitor);
@@ -213,7 +213,7 @@ public class ScenarioCheckerController {
      * @return
      */
     @GetMapping("/scenario/download")
-    public ResponseEntity<Resource> downloadRequestScenario(@RequestBody String scenarioContent) {
+    public ResponseEntity<Resource> getRequestDownloadScenario(@RequestBody String scenarioContent) {
         Scenario scenario = null;
 
         try {
