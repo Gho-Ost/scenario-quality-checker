@@ -105,6 +105,30 @@ public class ScenarioCheckerController {
     }
 
     /**
+     * Download method through title
+     * @param title
+     * @return
+     */
+    @GetMapping("/scenarios/{title}/download")
+    public ResponseEntity<Resource> downloadScenario(@PathVariable("title")String title) {
+        Scenario scenario=getScenario(title);
+        ScenarioTextDownloadVisitor scenarioTextDownloadVisitor= new ScenarioTextDownloadVisitor();
+        scenario.accept(scenarioTextDownloadVisitor);
+        String scenarioText = scenarioTextDownloadVisitor.getResult();
+        ByteArrayResource resource = new ByteArrayResource(scenarioText.getBytes());
+
+        // Set the content disposition header to trigger a download in the browser
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=scenario.txt");
+
+        // Return the resource as the response with the appropriate headers and content type
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.TEXT_PLAIN)
+                .body(resource);
+    }
+
+    /**
      * Scenario step count visitor based on request body
      * by title
      * @return
@@ -185,6 +209,37 @@ public class ScenarioCheckerController {
     }
 
     /**
+     * Download method through request body
+     * @return
+     */
+    @GetMapping("/scenario/download")
+    public ResponseEntity<Resource> downloadRequestScenario(@RequestBody String scenarioContent) {
+        Scenario scenario = null;
+
+        try {
+            JSONObject scenarioObj = new JSONObject(scenarioContent);
+            scenario = JSONParser.parseScenarioObject(scenarioObj);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        ScenarioTextDownloadVisitor scenarioTextDownloadVisitor= new ScenarioTextDownloadVisitor();
+        scenario.accept(scenarioTextDownloadVisitor);
+
+        String scenarioText = scenarioTextDownloadVisitor.getResult();
+        ByteArrayResource resource = new ByteArrayResource(scenarioText.getBytes());
+
+        // Set the content disposition header to trigger a download in the browser
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=scenario.txt");
+
+        // Return the resource as the response with the appropriate headers and content type
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.TEXT_PLAIN)
+                .body(resource);
+    }
+
+    /**
      * Stores a scenario
      * @param scenarioContent
      * @return
@@ -241,61 +296,6 @@ public class ScenarioCheckerController {
     public Map<String, Scenario> deleteScenario(@PathVariable("title")String title) {
         scenarioStorage.remove(title);
         return scenarioStorage;
-    }
-
-    /**
-     * Download method through title
-     * @param title
-     * @return
-     */
-    @GetMapping("/scenarios/{title}/download")
-    public ResponseEntity<Resource> downloadScenario(@PathVariable("title")String title) {
-        Scenario scenario=getScenario(title);
-        ScenarioTextDownloadVisitor scenarioTextDownloadVisitor= new ScenarioTextDownloadVisitor();
-        scenario.accept(scenarioTextDownloadVisitor);
-        String scenarioText = scenarioTextDownloadVisitor.getResult();
-        ByteArrayResource resource = new ByteArrayResource(scenarioText.getBytes());
-
-        // Set the content disposition header to trigger a download in the browser
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=scenario.txt");
-
-        // Return the resource as the response with the appropriate headers and content type
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentType(MediaType.TEXT_PLAIN)
-                .body(resource);
-    }
-
-    /**
-     * Download method through request body
-     * @return
-     */
-    @GetMapping("/scenario/download")
-    public ResponseEntity<Resource> downloadRequestScenario(@RequestBody String scenarioContent) {
-        Scenario scenario = null;
-
-        try {
-            JSONObject scenarioObj = new JSONObject(scenarioContent);
-            scenario = JSONParser.parseScenarioObject(scenarioObj);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-        ScenarioTextDownloadVisitor scenarioTextDownloadVisitor= new ScenarioTextDownloadVisitor();
-        scenario.accept(scenarioTextDownloadVisitor);
-
-        String scenarioText = scenarioTextDownloadVisitor.getResult();
-        ByteArrayResource resource = new ByteArrayResource(scenarioText.getBytes());
-
-        // Set the content disposition header to trigger a download in the browser
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=scenario.txt");
-
-        // Return the resource as the response with the appropriate headers and content type
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentType(MediaType.TEXT_PLAIN)
-                .body(resource);
     }
 
     /**
