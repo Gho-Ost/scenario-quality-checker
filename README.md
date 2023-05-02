@@ -5,8 +5,12 @@ Latest build status:
 
 For analysts documenting functional requirements with scenarios, our SQC application will provide quantitative information and enable detection of problems in functional requirements written in the form of scenarios. The application will be available via GUI and also as a remote API, thanks to which it can be integrated with existing tools.
 
+---
+
 Backlog sheet access: [backlog](https://docs.google.com/spreadsheets/d/10xPEoCOPM9XNCSuVxjXvBpm4q6dU80llhul9FbcC-B8/edit?usp=sharing)<br>
 Definition of Done sheet: [DoD](https://docs.google.com/spreadsheets/d/1tAZz23FwqmvO13xXP5R6w4fjLJbzPUflcsjcx2UOEy8/edit?usp=sharing)
+
+---
 
 Format of scenarios:
 - The scenario includes a header specifying its title and actors (external and system)
@@ -60,3 +64,57 @@ Corresponding JSON input format:<br>
 	]
 }
 ```
+
+---
+
+Working with REST api
+
+===== working with JSON input in request body =====
+
+Step counter:
+GET /scenario/stepcount
+
+Keyword counter:
+GET /scenario/keywordcount
+
+Level cutting:
+GET /scenario/levelcut/{maxLevel}
+
+Missing actor:
+GET /scenario/missingactor
+
+Download text:
+GET /scenario/download
+
+===== working with stored scenarios =====
+
+Adding a scenario to storage:
+POST /scenario
+(with included request body in JSON)
+
+Getting all scenarios:
+GET /scenarios
+
+Getting a scenario by title:
+GET /scenario/{title}
+
+Deleting all scenarios:
+DELETE /scenarios
+
+Deleting a scenario by title:
+DELETE /scenario/{title}
+
+Step counter:
+GET /scenarios/{title}/stepcount
+
+Keyword counter:
+GET /scenarios/{title}/keywordcount
+
+Level cutting:
+GET /scenarios/{title}/levelcut/{maxLevel}
+
+Missing actor:
+GET /scenarios/{title}/missingactor
+
+Download:
+GET /scenarios/{title}/download
