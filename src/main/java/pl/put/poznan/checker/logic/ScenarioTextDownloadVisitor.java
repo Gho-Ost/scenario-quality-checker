@@ -1,6 +1,7 @@
 package pl.put.poznan.checker.logic;
 
-import java.util.ArrayList;
+import pl.put.poznan.checker.model.Scenario;
+import pl.put.poznan.checker.model.Step;
 
 //TODO change to new step level format
 public class ScenarioTextDownloadVisitor implements Visitor{

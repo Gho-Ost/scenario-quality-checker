@@ -1,5 +1,8 @@
 package pl.put.poznan.checker.logic;
 
+import pl.put.poznan.checker.model.Scenario;
+import pl.put.poznan.checker.model.Step;
+
 //TODO: Test and review the implementation
 public class ScenarioKeyWordCountVisitor implements Visitor{
     private int keyWordCount=0;

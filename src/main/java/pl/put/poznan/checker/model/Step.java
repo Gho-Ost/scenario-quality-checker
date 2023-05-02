@@ -1,9 +1,12 @@
-package pl.put.poznan.checker.logic;
+package pl.put.poznan.checker.model;
+
+import pl.put.poznan.checker.logic.Visitable;
+import pl.put.poznan.checker.logic.Visitor;
 
 import java.util.ArrayList;
 
 // TEST template for filling steps - idk if this automatic parsing can even work like that
-public class Step implements Visitable{
+public class Step implements Visitable {
     private String actor;
     private String keyword;
     private String action;

@@ -1,5 +1,8 @@
 package pl.put.poznan.checker.logic;
 
+import pl.put.poznan.checker.model.Scenario;
+import pl.put.poznan.checker.model.Step;
+
 import java.util.ArrayList;
 import java.util.List;
 

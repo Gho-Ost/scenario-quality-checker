@@ -1,8 +1,11 @@
-package pl.put.poznan.checker.logic;
+package pl.put.poznan.checker.model;
+
+import pl.put.poznan.checker.logic.Visitable;
+import pl.put.poznan.checker.logic.Visitor;
 
 import java.util.ArrayList;
 
-public class Scenario implements Visitable{
+public class Scenario implements Visitable {
     private String title;
     private String[] actors;
     private String systemActor;

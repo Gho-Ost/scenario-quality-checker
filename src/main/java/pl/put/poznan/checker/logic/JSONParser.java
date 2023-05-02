@@ -3,11 +3,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import pl.put.poznan.checker.model.Scenario;
+import pl.put.poznan.checker.model.Step;
 
 public class JSONParser {
     public static void main(String[] args) {
