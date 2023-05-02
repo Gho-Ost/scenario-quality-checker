@@ -72,52 +72,52 @@ System actor: System<br>
 ### working with JSON input in request body
 
 Step counter:
-GET /scenario/stepcount
+- GET /scenario/stepcount
 
 Keyword counter:
-GET /scenario/keywordcount
+- GET /scenario/keywordcount
 
 Level cutting:
-GET /scenario/levelcut/{maxLevel} <br>
+- GET /scenario/levelcut/{maxLevel} <br>
 *maxLevel - integer value of cutting depth*
 
 Missing actor:
-GET /scenario/missingactor
+- GET /scenario/missingactor
 
 Download text:
-GET /scenario/download
+- GET /scenario/download
 
 ### working with stored scenarios
 *title - title of the scenario*
 
 Adding a scenario to storage:
-POST /scenario <br>
+- POST /scenario <br>
 *with included request body in JSON*
 
 Getting all scenarios:
-GET /scenarios
+- GET /scenarios
 
 Getting a scenario by title:
-GET /scenario/{title}
+- GET /scenario/{title}
 
 Deleting all scenarios:
-DELETE /scenarios
+- DELETE /scenarios
 
 Deleting a scenario by title:
-DELETE /scenario/{title}
+- DELETE /scenario/{title}
 
 Step counter:
-GET /scenarios/{title}/stepcount
+- GET /scenarios/{title}/stepcount
 
 Keyword counter:
-GET /scenarios/{title}/keywordcount
+- GET /scenarios/{title}/keywordcount
 
 Level cutting:
-GET /scenarios/{title}/levelcut/{maxLevel} <br>
+- GET /scenarios/{title}/levelcut/{maxLevel} <br>
 *maxLevel - integer value of cutting depth*
 
 Missing actor:
-GET /scenarios/{title}/missingactor
+- GET /scenarios/{title}/missingactor
 
 Download:
-GET /scenarios/{title}/download
+- GET /scenarios/{title}/download
