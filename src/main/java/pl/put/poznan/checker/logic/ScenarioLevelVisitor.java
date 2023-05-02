@@ -8,6 +8,13 @@ public class ScenarioLevelVisitor implements Visitor{
     private Scenario scenario;
     private ArrayList<Step> steps;
 
+    public ScenarioLevelVisitor(int maxLevel){
+        this.maxLevel = maxLevel;
+    }
+
+    public ScenarioLevelVisitor(){
+    }
+
     public void setMaxLevel(int maxLevel){
         this.maxLevel=maxLevel;
     }

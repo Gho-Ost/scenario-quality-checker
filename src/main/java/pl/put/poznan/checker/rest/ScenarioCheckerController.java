@@ -52,8 +52,29 @@ public class ScenarioCheckerController {
         }
 //         newScenario.printScenario();
 
-        ScenarioTextDownloadVisitor visitor = new ScenarioTextDownloadVisitor();
-        newScenario.accept(visitor);
+        ScenarioTextDownloadVisitor textVisitor = new ScenarioTextDownloadVisitor();
+        ScenarioCountVisitor countVisitor = new ScenarioCountVisitor();
+        ScenarioKeyWordCountVisitor keyWordCountVisitor = new ScenarioKeyWordCountVisitor();
+        ScenarioLevelVisitor levelVisitor = new ScenarioLevelVisitor(2);
+        ScenarioMissingActorVisitor missingActorVisitor = new ScenarioMissingActorVisitor();
+
+//        newScenario.accept(textVisitor);
+//
+//        newScenario.accept(countVisitor);
+//        System.out.println("\nCounted steps: " + countVisitor.getStepCount());
+//
+//        newScenario.accept(keyWordCountVisitor);
+//        System.out.println("\nKeyword count: " + keyWordCountVisitor.getKeyWordCount());
+
+        newScenario.accept(levelVisitor);
+        System.out.println("\nScenario level 2:");
+        levelVisitor.getScenario().printScenario();
+
+//        System.out.println("\nMissing actor steps:");
+//        newScenario.accept(missingActorVisitor);
+//        for (Step step : missingActorVisitor.getNoActorSteps()){
+//            step.printStep();
+//        }
 
         return newScenario;
     }
