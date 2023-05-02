@@ -4,6 +4,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.checker.logic.*;
 import pl.put.poznan.checker.model.Scenario;
@@ -156,6 +161,30 @@ public class ScenarioCheckerController {
     public Map<String, Scenario> deleteScenario(@PathVariable("title")String title) {
         scenarioStorage.remove(title);
         return scenarioStorage;
+    }
+
+    /**
+     * Download method
+     * @param title
+     * @return
+     */
+    @GetMapping("/scenario/{title}/download")
+    public ResponseEntity<Resource> downloadScenario(@PathVariable("title")String title) {
+        Scenario scenario=getScenario(title);
+        ScenarioTextDownloadVisitor scenarioTextDownloadVisitor= new ScenarioTextDownloadVisitor();
+        scenario.accept(scenarioTextDownloadVisitor);
+        String scenarioText = scenarioTextDownloadVisitor.getResult();
+        ByteArrayResource resource = new ByteArrayResource(scenarioText.getBytes());
+
+        // Set the content disposition header to trigger a download in the browser
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=scenario.txt");
+
+        // Return the resource as the response with the appropriate headers and content type
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.TEXT_PLAIN)
+                .body(resource);
     }
 
     /**
