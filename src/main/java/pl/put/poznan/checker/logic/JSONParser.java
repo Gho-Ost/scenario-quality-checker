@@ -163,8 +163,7 @@ public class JSONParser {
             newSteps.add(new Step(actor, keyword, action, substeps, stepLevel));
 
             String [] splitStepLevel = stepLevel.split("\\.");
-            System.out.println(stepLevel);
-            System.out.println(Arrays.toString(splitStepLevel));
+
             if (splitStepLevel.length > 0){
                 String valueToIncrement = splitStepLevel[level];
                 Integer newValue = Integer.parseInt(valueToIncrement);
