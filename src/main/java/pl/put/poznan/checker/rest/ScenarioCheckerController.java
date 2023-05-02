@@ -1,4 +1,5 @@
 package pl.put.poznan.checker.rest;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -8,6 +9,9 @@ import pl.put.poznan.checker.logic.*;
 import pl.put.poznan.checker.model.Scenario;
 import pl.put.poznan.checker.model.Step;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 
@@ -41,6 +45,58 @@ public class ScenarioCheckerController {
         // perform the transformation, you should run your logic here, below is just a silly example
         ScenarioChecker checker = new ScenarioChecker(checks);
         return checker.check(text);
+    }
+
+    /**
+     * Scenario step count visitor
+     * by title
+     * @return
+     */
+    @GetMapping("/stepcount/{title}")
+    public Integer getScenarioStepCount(@PathVariable("title")String title) {
+        Scenario scenario = scenarioStorage.get(title);
+        ScenarioCountVisitor visitor = new ScenarioCountVisitor();
+        scenario.accept(visitor);
+        return visitor.getStepCount();
+    }
+
+    /**
+     * Scenario keyword count visitor
+     * by title
+     * @return
+     */
+    @GetMapping("/keywordcount/{title}")
+    public Integer getScenarioKeywordCount(@PathVariable("title")String title) {
+        Scenario scenario = scenarioStorage.get(title);
+        ScenarioKeyWordCountVisitor visitor = new ScenarioKeyWordCountVisitor();
+        scenario.accept(visitor);
+        return visitor.getKeyWordCount();
+    }
+
+    /**
+     * Scenario level cutting visitor
+     * by title
+     * @return
+     */
+    @GetMapping("/levelcut/{title}/{maxLevel}")
+    public Scenario getScenarioLevelCut(@PathVariable String title, @PathVariable Integer maxLevel) {
+        Scenario scenario = scenarioStorage.get(title);
+        ScenarioLevelVisitor visitor = new ScenarioLevelVisitor(maxLevel);
+        scenario.accept(visitor);
+        return visitor.getScenario();
+    }
+
+    /**
+     * Scenario missing actor visitor
+     * by title
+     * @return
+     */
+    @GetMapping("/missingactor/{title}")
+    public List<Step> getScenarioMissingActor(@PathVariable("title")String title) {
+        Scenario scenario = scenarioStorage.get(title);
+        ScenarioMissingActorVisitor visitor = new ScenarioMissingActorVisitor();
+        scenario.accept(visitor);
+        return visitor.getNoActorSteps();
     }
 
     /**
