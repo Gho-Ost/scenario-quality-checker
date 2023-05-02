@@ -59,15 +59,13 @@ public class ScenarioCheckerController {
             throw new RuntimeException(e);
         }
 
-        // TODO check if title occupied?
-
         scenarioStorage.put(newScenario.getTitle(), newScenario);
 
         return newScenario;
     }
 
     /**
-     * Returns a chosen scenario
+     * Returns a scenario selected by title
      * @return
      */
     @GetMapping("/scenario/{title}")
@@ -81,6 +79,26 @@ public class ScenarioCheckerController {
      */
     @GetMapping("/scenarios")
     public Map<String, Scenario> getScenarios() {
+        return scenarioStorage;
+    }
+
+    /**
+     * Delete all scenarios
+     * @return
+     */
+    @DeleteMapping("/scenarios")
+    public Map<String, Scenario> deleteScenarios() {
+        scenarioStorage.clear();
+        return scenarioStorage;
+    }
+
+    /**
+     * Delete scenario selected by title
+     * @return
+     */
+    @DeleteMapping("/scenario/{title}")
+    public Map<String, Scenario> deleteScenario(@PathVariable("title")String title) {
+        scenarioStorage.remove(title);
         return scenarioStorage;
     }
 
