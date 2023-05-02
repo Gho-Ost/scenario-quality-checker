@@ -8,11 +8,12 @@ import pl.put.poznan.checker.logic.*;
 import pl.put.poznan.checker.model.Scenario;
 import pl.put.poznan.checker.model.Step;
 
-import java.util.Arrays;
+import java.util.*;
 
 
 @RestController
 public class ScenarioCheckerController {
+    private Map<String, Scenario> scenarioStorage = new HashMap<String, Scenario>();
 
     private static final Logger logger = LoggerFactory.getLogger(ScenarioCheckerController.class);
 
@@ -58,8 +59,29 @@ public class ScenarioCheckerController {
             throw new RuntimeException(e);
         }
 
+        // TODO check if title occupied?
+
+        scenarioStorage.put(newScenario.getTitle(), newScenario);
 
         return newScenario;
+    }
+
+    /**
+     * Returns a chosen scenario
+     * @return
+     */
+    @GetMapping("/scenario/{title}")
+    public Scenario getScenario(@PathVariable("title")String title) {
+        return scenarioStorage.get(title);
+    }
+
+    /**
+     * Returns all scenarios
+     * @return
+     */
+    @GetMapping("/scenarios")
+    public Map<String, Scenario> getScenarios() {
+        return scenarioStorage;
     }
 
     /**
