@@ -59,10 +59,16 @@ public class ScenarioCheckerController {
      */
     @GetMapping("scenarios/{title}/stepcount")
     public Integer getScenarioStepCount(@PathVariable("title")String title) {
+        logger.debug("Getting step count for scenario with title: {}", title);
         Scenario scenario = scenarioStorage.get(title);
+        logger.debug("Received scenario with title: {} actors: {} systemActor: {}",
+                scenario.getTitle(), Arrays.toString(scenario.getActors()),
+                scenario.getSystemActor());
         ScenarioCountVisitor visitor = new ScenarioCountVisitor();
         scenario.accept(visitor);
-        return visitor.getStepCount();
+        Integer stepCount = visitor.getStepCount();
+        logger.info("Step count for scenario with title {}: {}", title, stepCount);
+        return stepCount;
     }
 
     /**
@@ -72,10 +78,16 @@ public class ScenarioCheckerController {
      */
     @GetMapping("/scenarios/{title}/keywordcount")
     public Integer getScenarioKeywordCount(@PathVariable("title")String title) {
+        logger.debug("Getting keyword count for scenario with title: {}", title);
         Scenario scenario = scenarioStorage.get(title);
+        logger.debug("Received scenario with title: {} actors: {} systemActor: {}",
+                scenario.getTitle(), Arrays.toString(scenario.getActors()),
+                scenario.getSystemActor());
         ScenarioKeyWordCountVisitor visitor = new ScenarioKeyWordCountVisitor();
         scenario.accept(visitor);
-        return visitor.getKeyWordCount();
+        Integer keywordCount = visitor.getKeyWordCount();
+        logger.info("Keyword count for scenario with title {}: {}", title, keywordCount);
+        return keywordCount;
     }
 
     /**
@@ -85,9 +97,14 @@ public class ScenarioCheckerController {
      */
     @GetMapping("/scenarios/{title}/levelcut/{maxLevel}")
     public Scenario getScenarioLevelCut(@PathVariable String title, @PathVariable Integer maxLevel) {
+        logger.debug("Getting ScenarioLevelCut for scenario with title: {} and cutting-level: {}", title, maxLevel);
         Scenario scenario = scenarioStorage.get(title);
+        logger.debug("Received scenario with title: {} actors: {} systemActor: {}",
+                scenario.getTitle(), Arrays.toString(scenario.getActors()),
+                scenario.getSystemActor());
         ScenarioLevelVisitor visitor = new ScenarioLevelVisitor(maxLevel);
         scenario.accept(visitor);
+        //TODO: implement logging for steps on debug and info level
         return visitor.getScenario();
     }
 
@@ -98,6 +115,7 @@ public class ScenarioCheckerController {
      */
     @GetMapping("/scenarios/{title}/missingactor")
     public List<Step> getScenarioMissingActor(@PathVariable("title")String title) {
+        //TODO: implement logging
         Scenario scenario = scenarioStorage.get(title);
         ScenarioMissingActorVisitor visitor = new ScenarioMissingActorVisitor();
         scenario.accept(visitor);
@@ -111,7 +129,11 @@ public class ScenarioCheckerController {
      */
     @GetMapping("/scenarios/{title}/download")
     public ResponseEntity<Resource> getDownloadScenario(@PathVariable("title")String title) {
+        logger.debug("Getting download for scenario with title: {}", title);
         Scenario scenario=getScenario(title);
+        logger.debug("Received scenario with title: {} actors: {} systemActor: {}",
+                scenario.getTitle(), Arrays.toString(scenario.getActors()),
+                scenario.getSystemActor());
         ScenarioTextDownloadVisitor scenarioTextDownloadVisitor= new ScenarioTextDownloadVisitor();
         scenario.accept(scenarioTextDownloadVisitor);
         String scenarioText = scenarioTextDownloadVisitor.getResult();
@@ -122,6 +144,7 @@ public class ScenarioCheckerController {
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=scenario.txt");
 
         // Return the resource as the response with the appropriate headers and content type
+        logger.info("Returning download for scenario with title: {}", title);
         return ResponseEntity.ok()
                 .headers(headers)
                 .contentType(MediaType.TEXT_PLAIN)
@@ -133,6 +156,7 @@ public class ScenarioCheckerController {
      * by title
      * @return
      */
+    //TODO: implement logging for all below methods
     @GetMapping("/scenario/stepcount")
     public Integer getRequestScenarioStepCount(@RequestBody String scenarioContent) {
         Scenario newScenario = null;
