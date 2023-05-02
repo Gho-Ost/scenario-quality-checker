@@ -12,13 +12,13 @@ Definition of Done sheet: [DoD](https://docs.google.com/spreadsheets/d/1tAZz23Fw
 
 ---
 
-Format of scenarios:
+## Format of scenarios:
 - The scenario includes a header specifying its title and actors (external and system)
 - The scenario consists of steps (each step contains text)
 - Steps can contain sub-scenarios (any level of nesting)
 - The steps may start with the keywords IF, ELSE, FOR EACH
 
-Example:<br>
+### Example:<br>
 Title: Book addition<br>
 Actors:  Librarian<br>
 System actor: System<br>
@@ -67,9 +67,9 @@ Corresponding JSON input format:<br>
 
 ---
 
-Working with REST api
+## Working with REST api
 
-===== working with JSON input in request body =====
+### working with JSON input in request body
 
 Step counter:
 GET /scenario/stepcount
@@ -86,7 +86,7 @@ GET /scenario/missingactor
 Download text:
 GET /scenario/download
 
-===== working with stored scenarios =====
+### working with stored scenarios
 
 Adding a scenario to storage:
 POST /scenario
