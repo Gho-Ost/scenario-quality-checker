@@ -53,7 +53,7 @@ public class ScenarioCheckerController {
     }
 
     /**
-     * Scenario step count visitor
+     * Scenario step count visitor based on stored scenario title
      * by title
      * @return
      */
@@ -66,7 +66,7 @@ public class ScenarioCheckerController {
     }
 
     /**
-     * Scenario keyword count visitor
+     * Scenario keyword count visitor based on stored scenario title
      * by title
      * @return
      */
@@ -79,7 +79,7 @@ public class ScenarioCheckerController {
     }
 
     /**
-     * Scenario level cutting visitor
+     * Scenario level cutting visitor based on stored scenario title
      * by title
      * @return
      */
@@ -92,7 +92,7 @@ public class ScenarioCheckerController {
     }
 
     /**
-     * Scenario missing actor visitor
+     * Scenario missing actor visitor based on stored scenario title
      * by title
      * @return
      */
@@ -101,6 +101,86 @@ public class ScenarioCheckerController {
         Scenario scenario = scenarioStorage.get(title);
         ScenarioMissingActorVisitor visitor = new ScenarioMissingActorVisitor();
         scenario.accept(visitor);
+        return visitor.getNoActorSteps();
+    }
+
+    /**
+     * Scenario step count visitor based on request body
+     * by title
+     * @return
+     */
+    @GetMapping("/stepcount")
+    public Integer getRequestScenarioStepCount(@RequestBody String scenarioContent) {
+        Scenario newScenario = null;
+
+        try {
+            JSONObject scenarioObj = new JSONObject(scenarioContent);
+            newScenario = JSONParser.parseScenarioObject(scenarioObj);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        ScenarioCountVisitor visitor = new ScenarioCountVisitor();
+        newScenario.accept(visitor);
+        return visitor.getStepCount();
+    }
+
+    /**
+     * Scenario keyword count visitor based on request body
+     * by title
+     * @return
+     */
+    @GetMapping("/keywordcount")
+    public Integer getRequestScenarioKeywordCount(@RequestBody String scenarioContent) {
+        Scenario newScenario = null;
+
+        try {
+            JSONObject scenarioObj = new JSONObject(scenarioContent);
+            newScenario = JSONParser.parseScenarioObject(scenarioObj);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        ScenarioKeyWordCountVisitor visitor = new ScenarioKeyWordCountVisitor();
+        newScenario.accept(visitor);
+        return visitor.getKeyWordCount();
+    }
+
+    /**
+     * Scenario level cutting visitor based on request body
+     * by title
+     * @return
+     */
+    @GetMapping("/levelcut/{maxLevel}")
+    public Scenario getRequestScenarioLevelCut(@RequestBody String scenarioContent, @PathVariable Integer maxLevel) {
+        Scenario newScenario = null;
+
+        try {
+            JSONObject scenarioObj = new JSONObject(scenarioContent);
+            newScenario = JSONParser.parseScenarioObject(scenarioObj);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        ScenarioLevelVisitor visitor = new ScenarioLevelVisitor(maxLevel);
+        newScenario.accept(visitor);
+        return visitor.getScenario();
+    }
+
+    /**
+     * Scenario missing actor visitor based on request body
+     * by title
+     * @return
+     */
+    @GetMapping("/missingactor")
+    public List<Step> getRequestScenarioMissingActor(@RequestBody String scenarioContent) {
+        Scenario newScenario = null;
+
+        try {
+            JSONObject scenarioObj = new JSONObject(scenarioContent);
+            newScenario = JSONParser.parseScenarioObject(scenarioObj);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        ScenarioMissingActorVisitor visitor = new ScenarioMissingActorVisitor();
+        newScenario.accept(visitor);
         return visitor.getNoActorSteps();
     }
 
