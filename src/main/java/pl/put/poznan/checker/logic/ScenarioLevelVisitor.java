@@ -31,7 +31,9 @@ public class ScenarioLevelVisitor implements Visitor{
             if(currentLevel+1>this.maxLevel){
                 step.setSubsteps(null);
             }
-            this.steps.add(step);
+            if(currentLevel==1) {
+                this.steps.add(step);
+            }
         }
     }
 
