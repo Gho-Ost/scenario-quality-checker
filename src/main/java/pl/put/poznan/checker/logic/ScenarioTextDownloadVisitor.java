@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-//TODO change to new step level format
 public class ScenarioTextDownloadVisitor implements Visitor {
     private StringBuilder result = new StringBuilder();
     private String downloadPath;
