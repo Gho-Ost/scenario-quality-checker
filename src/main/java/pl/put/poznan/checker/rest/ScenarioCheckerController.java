@@ -57,7 +57,7 @@ public class ScenarioCheckerController {
      * by title
      * @return
      */
-    @GetMapping("/stepcount/{title}")
+    @GetMapping("scenarios/{title}/stepcount")
     public Integer getScenarioStepCount(@PathVariable("title")String title) {
         Scenario scenario = scenarioStorage.get(title);
         ScenarioCountVisitor visitor = new ScenarioCountVisitor();
@@ -70,7 +70,7 @@ public class ScenarioCheckerController {
      * by title
      * @return
      */
-    @GetMapping("/keywordcount/{title}")
+    @GetMapping("/scenarios/{title}/keywordcount")
     public Integer getScenarioKeywordCount(@PathVariable("title")String title) {
         Scenario scenario = scenarioStorage.get(title);
         ScenarioKeyWordCountVisitor visitor = new ScenarioKeyWordCountVisitor();
@@ -83,7 +83,7 @@ public class ScenarioCheckerController {
      * by title
      * @return
      */
-    @GetMapping("/levelcut/{title}/{maxLevel}")
+    @GetMapping("/scenarios/{title}/levelcut/{maxLevel}")
     public Scenario getScenarioLevelCut(@PathVariable String title, @PathVariable Integer maxLevel) {
         Scenario scenario = scenarioStorage.get(title);
         ScenarioLevelVisitor visitor = new ScenarioLevelVisitor(maxLevel);
@@ -96,7 +96,7 @@ public class ScenarioCheckerController {
      * by title
      * @return
      */
-    @GetMapping("/missingactor/{title}")
+    @GetMapping("/scenarios/{title}/missingactor")
     public List<Step> getScenarioMissingActor(@PathVariable("title")String title) {
         Scenario scenario = scenarioStorage.get(title);
         ScenarioMissingActorVisitor visitor = new ScenarioMissingActorVisitor();
@@ -109,7 +109,7 @@ public class ScenarioCheckerController {
      * by title
      * @return
      */
-    @GetMapping("/stepcount")
+    @GetMapping("/scenario/stepcount")
     public Integer getRequestScenarioStepCount(@RequestBody String scenarioContent) {
         Scenario newScenario = null;
 
@@ -129,7 +129,7 @@ public class ScenarioCheckerController {
      * by title
      * @return
      */
-    @GetMapping("/keywordcount")
+    @GetMapping("/scenario/keywordcount")
     public Integer getRequestScenarioKeywordCount(@RequestBody String scenarioContent) {
         Scenario newScenario = null;
 
@@ -149,7 +149,7 @@ public class ScenarioCheckerController {
      * by title
      * @return
      */
-    @GetMapping("/levelcut/{maxLevel}")
+    @GetMapping("/scenario/levelcut/{maxLevel}")
     public Scenario getRequestScenarioLevelCut(@RequestBody String scenarioContent, @PathVariable Integer maxLevel) {
         Scenario newScenario = null;
 
@@ -169,7 +169,7 @@ public class ScenarioCheckerController {
      * by title
      * @return
      */
-    @GetMapping("/missingactor")
+    @GetMapping("/scenario/missingactor")
     public List<Step> getRequestScenarioMissingActor(@RequestBody String scenarioContent) {
         Scenario newScenario = null;
 
@@ -244,15 +244,46 @@ public class ScenarioCheckerController {
     }
 
     /**
-     * Download method
+     * Download method through title
      * @param title
      * @return
      */
-    @GetMapping("/scenario/{title}/download")
+    @GetMapping("/scenarios/{title}/download")
     public ResponseEntity<Resource> downloadScenario(@PathVariable("title")String title) {
         Scenario scenario=getScenario(title);
         ScenarioTextDownloadVisitor scenarioTextDownloadVisitor= new ScenarioTextDownloadVisitor();
         scenario.accept(scenarioTextDownloadVisitor);
+        String scenarioText = scenarioTextDownloadVisitor.getResult();
+        ByteArrayResource resource = new ByteArrayResource(scenarioText.getBytes());
+
+        // Set the content disposition header to trigger a download in the browser
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=scenario.txt");
+
+        // Return the resource as the response with the appropriate headers and content type
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.TEXT_PLAIN)
+                .body(resource);
+    }
+
+    /**
+     * Download method through request body
+     * @return
+     */
+    @GetMapping("/scenario/download")
+    public ResponseEntity<Resource> downloadRequestScenario(@RequestBody String scenarioContent) {
+        Scenario scenario = null;
+
+        try {
+            JSONObject scenarioObj = new JSONObject(scenarioContent);
+            scenario = JSONParser.parseScenarioObject(scenarioObj);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        ScenarioTextDownloadVisitor scenarioTextDownloadVisitor= new ScenarioTextDownloadVisitor();
+        scenario.accept(scenarioTextDownloadVisitor);
+
         String scenarioText = scenarioTextDownloadVisitor.getResult();
         ByteArrayResource resource = new ByteArrayResource(scenarioText.getBytes());
 
