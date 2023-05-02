@@ -78,7 +78,8 @@ Keyword counter:
 GET /scenario/keywordcount
 
 Level cutting:
-GET /scenario/levelcut/{maxLevel}
+GET /scenario/levelcut/{maxLevel} <br>
+*maxLevel - integer value of cutting depth*
 
 Missing actor:
 GET /scenario/missingactor
@@ -87,10 +88,11 @@ Download text:
 GET /scenario/download
 
 ### working with stored scenarios
+*title - title of the scenario*
 
 Adding a scenario to storage:
-POST /scenario
-(with included request body in JSON)
+POST /scenario <br>
+*with included request body in JSON*
 
 Getting all scenarios:
 GET /scenarios
@@ -111,7 +113,8 @@ Keyword counter:
 GET /scenarios/{title}/keywordcount
 
 Level cutting:
-GET /scenarios/{title}/levelcut/{maxLevel}
+GET /scenarios/{title}/levelcut/{maxLevel} <br>
+*maxLevel - integer value of cutting depth*
 
 Missing actor:
 GET /scenarios/{title}/missingactor
