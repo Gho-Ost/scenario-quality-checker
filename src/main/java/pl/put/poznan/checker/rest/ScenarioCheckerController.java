@@ -26,6 +26,26 @@ public class ScenarioCheckerController {
 
     private static final Logger logger = LoggerFactory.getLogger(ScenarioCheckerController.class);
 
+    private void logSteps(ArrayList<Step> steps) {
+        for (Step step : steps) {
+            logger.debug("Step with level: {} actor: {} keyword: {} action: {}",
+                    step.getStepLevel(), step.getActor(), step.getKeyword(), step.getAction());
+            if(step.getSubsteps()!=null) {
+                logSteps(step.getSubsteps());
+            }
+        }
+    }
+
+    private void logSteps(List<Step> steps) {
+        for (Step step : steps) {
+            logger.debug("Step with level: {} actor: {} keyword: {} action: {}",
+                    step.getStepLevel(), step.getActor(), step.getKeyword(), step.getAction());
+            if(step.getSubsteps()!=null) {
+                logSteps(step.getSubsteps());
+            }
+        }
+    }
+
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public String get(@PathVariable String text,
                               @RequestParam(value= "checks", defaultValue="upper,escape") String[] checks) {
@@ -97,15 +117,19 @@ public class ScenarioCheckerController {
      */
     @GetMapping("/scenarios/{title}/levelcut/{maxLevel}")
     public Scenario getScenarioLevelCut(@PathVariable String title, @PathVariable Integer maxLevel) {
-        logger.debug("Getting ScenarioLevelCut for scenario with title: {} and cutting-level: {}", title, maxLevel);
+        logger.info("Getting ScenarioLevelCut for scenario with title: {} and cutting-level: {}", title, maxLevel);
         Scenario scenario = scenarioStorage.get(title);
         logger.debug("Received scenario with title: {} actors: {} systemActor: {}",
                 scenario.getTitle(), Arrays.toString(scenario.getActors()),
                 scenario.getSystemActor());
         ScenarioLevelVisitor visitor = new ScenarioLevelVisitor(maxLevel);
         scenario.accept(visitor);
-        //TODO: implement logging for steps on debug and info level
-        return visitor.getScenario();
+        Scenario result=visitor.getScenario();
+        logger.debug("Returning scenario with title: {} actors: {} systemActor: {}",
+                result.getTitle(), Arrays.toString(result.getActors()),
+                result.getSystemActor());
+        logSteps(result.getSteps());
+        return result;
     }
 
     /**
@@ -115,10 +139,14 @@ public class ScenarioCheckerController {
      */
     @GetMapping("/scenarios/{title}/missingactor")
     public List<Step> getScenarioMissingActor(@PathVariable("title")String title) {
-        //TODO: implement logging
+        logger.info("Getting download for scenario with title: {}", title);
         Scenario scenario = scenarioStorage.get(title);
+        logger.debug("Received scenario with title: {} actors: {} systemActor: {}",
+                scenario.getTitle(), Arrays.toString(scenario.getActors()),
+                scenario.getSystemActor());
         ScenarioMissingActorVisitor visitor = new ScenarioMissingActorVisitor();
         scenario.accept(visitor);
+        logSteps(visitor.getNoActorSteps());
         return visitor.getNoActorSteps();
     }
 
@@ -156,7 +184,6 @@ public class ScenarioCheckerController {
      * by title
      * @return
      */
-    //TODO: implement logging for all below methods
     @GetMapping("/scenario/stepcount")
     public Integer getRequestScenarioStepCount(@RequestBody String scenarioContent) {
         Scenario newScenario = null;
@@ -164,11 +191,16 @@ public class ScenarioCheckerController {
         try {
             JSONObject scenarioObj = new JSONObject(scenarioContent);
             newScenario = JSONParser.parseScenarioObject(scenarioObj);
+            logger.info("Received scenario with title: {} actors: {} systemActor: {}",
+                    newScenario.getTitle(), Arrays.toString(newScenario.getActors()),
+                    newScenario.getSystemActor());
+            logSteps(newScenario.getSteps());
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
         ScenarioCountVisitor visitor = new ScenarioCountVisitor();
         newScenario.accept(visitor);
+        logger.info("Returning step count {}",visitor.getStepCount());
         return visitor.getStepCount();
     }
 
@@ -184,11 +216,16 @@ public class ScenarioCheckerController {
         try {
             JSONObject scenarioObj = new JSONObject(scenarioContent);
             newScenario = JSONParser.parseScenarioObject(scenarioObj);
+            logger.info("Received scenario with title: {} actors: {} systemActor: {}",
+                    newScenario.getTitle(), Arrays.toString(newScenario.getActors()),
+                    newScenario.getSystemActor());
+            logSteps(newScenario.getSteps());
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
         ScenarioKeyWordCountVisitor visitor = new ScenarioKeyWordCountVisitor();
         newScenario.accept(visitor);
+        logger.info("Returning keyword count {}",visitor.getKeyWordCount());
         return visitor.getKeyWordCount();
     }
 
@@ -204,12 +241,21 @@ public class ScenarioCheckerController {
         try {
             JSONObject scenarioObj = new JSONObject(scenarioContent);
             newScenario = JSONParser.parseScenarioObject(scenarioObj);
+            logger.info("Received scenario with title: {} actors: {} systemActor: {}",
+                    newScenario.getTitle(), Arrays.toString(newScenario.getActors()),
+                    newScenario.getSystemActor());
+            logSteps(newScenario.getSteps());
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
         ScenarioLevelVisitor visitor = new ScenarioLevelVisitor(maxLevel);
         newScenario.accept(visitor);
-        return visitor.getScenario();
+        Scenario result=visitor.getScenario();
+        logger.debug("Returning scenario with title: {} actors: {} systemActor: {}",
+                result.getTitle(), Arrays.toString(result.getActors()),
+                result.getSystemActor());
+        logSteps(result.getSteps());
+        return result;
     }
 
     /**
@@ -224,11 +270,16 @@ public class ScenarioCheckerController {
         try {
             JSONObject scenarioObj = new JSONObject(scenarioContent);
             newScenario = JSONParser.parseScenarioObject(scenarioObj);
+            logger.info("Received scenario with title: {} actors: {} systemActor: {}",
+                    newScenario.getTitle(), Arrays.toString(newScenario.getActors()),
+                    newScenario.getSystemActor());
+            logSteps(newScenario.getSteps());
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
         ScenarioMissingActorVisitor visitor = new ScenarioMissingActorVisitor();
         newScenario.accept(visitor);
+        logSteps(visitor.getNoActorSteps());
         return visitor.getNoActorSteps();
     }
 
@@ -243,6 +294,10 @@ public class ScenarioCheckerController {
         try {
             JSONObject scenarioObj = new JSONObject(scenarioContent);
             scenario = JSONParser.parseScenarioObject(scenarioObj);
+            logger.info("Received scenario with title: {} actors: {} systemActor: {}",
+                    scenario.getTitle(), Arrays.toString(scenario.getActors()),
+                    scenario.getSystemActor());
+            logSteps(scenario.getSteps());
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -256,6 +311,7 @@ public class ScenarioCheckerController {
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=scenario.txt");
 
+        logger.info("Returning download for scenario with title: {}",scenario.getTitle());
         // Return the resource as the response with the appropriate headers and content type
         return ResponseEntity.ok()
                 .headers(headers)
@@ -280,7 +336,11 @@ public class ScenarioCheckerController {
         }
 
         scenarioStorage.put(newScenario.getTitle(), newScenario);
-
+        logger.info("Adding Scenario of title: {}", newScenario.getTitle());
+        logger.debug("Returning scenario with title: {} actors: {} systemActor: {}",
+                newScenario.getTitle(), Arrays.toString(newScenario.getActors()),
+                newScenario.getSystemActor());
+        logSteps(newScenario.getSteps());
         return newScenario;
     }
 
@@ -290,7 +350,13 @@ public class ScenarioCheckerController {
      */
     @GetMapping("/scenario/{title}")
     public Scenario getScenario(@PathVariable("title")String title) {
-        return scenarioStorage.get(title);
+        Scenario scenario=scenarioStorage.get(title);
+        logger.info("Getting scenario of title{}", scenario.getTitle());
+        logger.debug("Returning scenario with title: {} actors: {} systemActor: {}",
+                scenario.getTitle(), Arrays.toString(scenario.getActors()),
+                scenario.getSystemActor());
+        logSteps(scenario.getSteps());
+        return scenario;
     }
 
     /**
@@ -299,6 +365,7 @@ public class ScenarioCheckerController {
      */
     @GetMapping("/scenarios")
     public Map<String, Scenario> getScenarios() {
+        logger.info("Getting Scenarios");
         return scenarioStorage;
     }
 
@@ -309,6 +376,7 @@ public class ScenarioCheckerController {
     @DeleteMapping("/scenarios")
     public Map<String, Scenario> deleteScenarios() {
         scenarioStorage.clear();
+        logger.info("Deleting Scenarios");
         return scenarioStorage;
     }
 
@@ -319,6 +387,7 @@ public class ScenarioCheckerController {
     @DeleteMapping("/scenario/{title}")
     public Map<String, Scenario> deleteScenario(@PathVariable("title")String title) {
         scenarioStorage.remove(title);
+        logger.info("Deleted Scenario with title {}", title);
         return scenarioStorage;
     }
 
