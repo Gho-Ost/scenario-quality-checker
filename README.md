@@ -121,3 +121,9 @@ Missing actor:
 
 Download:
 - GET /scenarios/{title}/download
+
+---
+
+## GUI
+![image](https://user-images.githubusercontent.com/100212265/236026976-83f690f6-0a5e-4752-9946-9b9c36d27ae0.png)<br>
+![image](https://user-images.githubusercontent.com/100212265/236027170-c375d044-3982-4776-a094-7b2d7337b419.png)
