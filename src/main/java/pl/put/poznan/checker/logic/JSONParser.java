@@ -10,6 +10,10 @@ import org.json.JSONObject;
 import pl.put.poznan.checker.model.Scenario;
 import pl.put.poznan.checker.model.Step;
 
+/**
+ * The JSONParser class is responsible for reading and parsing a specified JSON file
+ * in order for it to be used as an instance of Scenario class object.
+ */
 public class JSONParser {
     public static void main(String[] args) {
         String content = null;
@@ -60,6 +64,11 @@ public class JSONParser {
         }
     }
 
+    /**
+     * Method responsible for parsing Steps saved in a JSON file asa JSONArray of steps.
+     * This class specifically prints the parsed document to the standard output.
+     * @param steps JSONArray containing objects to be parsed
+     */
     public static void parseSteps(JSONArray steps) {
         for (int i = 0; i < steps.length(); i++) {
             Object step = null;
@@ -93,6 +102,16 @@ public class JSONParser {
             }
         }
     }
+
+    /**
+     * Method responsible for parsing a provided JSONObject as means
+     * of creating an instance of Scenario Class based on provided JSONObject.
+     * In order to parse steps the method uses parseScenarioSteps() method of
+     * the JSONParser class.
+     * @param obj JSONObject to be changed into a Scenario
+     * @return Scenario created from the JSONObject
+     * @throws JSONException
+     */
     public static Scenario parseScenarioObject(JSONObject obj) throws JSONException {
         String title = obj.getString("title");
         JSONArray actorsArray = obj.getJSONArray("actors");
@@ -109,6 +128,15 @@ public class JSONParser {
         return new Scenario(title, actors, systemActor, steps);
     }
 
+    /**
+     * Method responsible for parsing steps into an ArrayList of Steps.
+     * @param steps JSONArray of steps to be parsed
+     * @param stepLevel String representing the stepLevel given in the form like: "2.5.3" in this example
+     *                  representing depth of 3, 3rd substep of a 5th step,
+     *                  which is the substep of a 2nd step
+     * @param level Integer representing level of the step
+     * @return ArrayList of steps created based on JSONArray
+     */
     private static ArrayList<Step> parseScenarioSteps(JSONArray steps, String stepLevel, int level){
         ArrayList<Step> newSteps = new ArrayList<Step>();
 
