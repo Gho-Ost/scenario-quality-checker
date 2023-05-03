@@ -231,5 +231,19 @@ public class ScenarioInterface extends JFrame {
                 outputTextArea.replaceSelection("");
             }
         });
+
+        /**
+         * Display info about GUI usage
+         */
+        infoButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                InfoWindow infoWindow = new InfoWindow("Info");
+            }
+        });
     }
 }
