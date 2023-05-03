@@ -98,13 +98,13 @@ Getting all scenarios:
 - GET /scenarios
 
 Getting a scenario by title:
-- GET /scenario/{title}
+- GET /scenarios/{title}
 
 Deleting all scenarios:
 - DELETE /scenarios
 
 Deleting a scenario by title:
-- DELETE /scenario/{title}
+- DELETE /scenarios/{title}
 
 Step counter:
 - GET /scenarios/{title}/stepcount

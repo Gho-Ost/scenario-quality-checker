@@ -399,7 +399,7 @@ public class ScenarioCheckerController {
      * @param title the title of the scenario as a path variable
      * @return the scenario with the given title
      */
-    @GetMapping("/scenario/{title}")
+    @GetMapping("/scenarios/{title}")
     public Scenario getScenario(@PathVariable("title")String title) {
         Scenario scenario=scenarioStorage.get(title);
         logger.info("Getting scenario of title{}", scenario.getTitle());
@@ -438,7 +438,7 @@ public class ScenarioCheckerController {
      * @param title the title of the scenario to remove as a path variable
      * @return a map representing the updated storage after removing the scenario
      */
-    @DeleteMapping("/scenario/{title}")
+    @DeleteMapping("/scenarios/{title}")
     public Map<String, Scenario> deleteScenario(@PathVariable("title")String title) {
         scenarioStorage.remove(title);
         logger.info("Deleted Scenario with title {}", title);
