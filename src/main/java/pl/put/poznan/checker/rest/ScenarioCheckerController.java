@@ -105,11 +105,12 @@ public class ScenarioCheckerController {
     /**
      * Handles GET requests to the "scenarios/{title}/stepcount" endpoint
      * and returns the step count using visitor for the stored scenario with the given title.
+     * Produces application/JSON response
      * @param title the title of the scenario as a path variable
      * @return the step count for the scenario with the given title
      */
-    @GetMapping("scenarios/{title}/stepcount")
-    public Integer getScenarioStepCount(@PathVariable("title")String title) {
+    @GetMapping(value = "scenarios/{title}/stepcount", produces = "application/JSON")
+    public String getScenarioStepCount(@PathVariable("title")String title) {
         logger.debug("Getting step count for scenario with title: {}", title);
         Scenario scenario = scenarioStorage.get(title);
         logger.debug("Received scenario with title: {} actors: {} systemActor: {}",
@@ -119,17 +120,18 @@ public class ScenarioCheckerController {
         scenario.accept(visitor);
         Integer stepCount = visitor.getStepCount();
         logger.info("Step count for scenario with title {}: {}", title, stepCount);
-        return stepCount;
+        return "{\"Step count\": " + stepCount + "}";
     }
 
     /**
      * Handles GET requests to the "/scenarios/{title}/keywordcount" endpoint and
      * returns the keyword count for the stored scenario with the given title by using the visitor.
+     * Produces application/JSON response
      * @param title the title of the scenario as a path variable
      * @return the keyword count for the scenario with the given title
      */
-    @GetMapping("/scenarios/{title}/keywordcount")
-    public Integer getScenarioKeywordCount(@PathVariable("title")String title) {
+    @GetMapping(value="/scenarios/{title}/keywordcount", produces = "application/JSON")
+    public String getScenarioKeywordCount(@PathVariable("title")String title) {
         logger.debug("Getting keyword count for scenario with title: {}", title);
         Scenario scenario = scenarioStorage.get(title);
         logger.debug("Received scenario with title: {} actors: {} systemActor: {}",
@@ -139,18 +141,19 @@ public class ScenarioCheckerController {
         scenario.accept(visitor);
         Integer keywordCount = visitor.getKeyWordCount();
         logger.info("Keyword count for scenario with title {}: {}", title, keywordCount);
-        return keywordCount;
+        return "{\"Keyword count\": " + keywordCount + "}";
     }
 
     /**
      * Handles GET requests to the "/scenarios/{title}/levelcut/{maxLevel}" endpoint and returns
      * a truncated version of the scenario with the given title for a stored Scenario.
      * Truncating in achieved by using the Visitor design pattern.
+     * Produces application/JSON response
      * @param title the title of the scenario as a path variable
      * @param maxLevel the maximum level to include in the level-cut scenario as a path variable
      * @return a level-cut version of the scenario with the given title
      */
-    @GetMapping("/scenarios/{title}/levelcut/{maxLevel}")
+    @GetMapping(value="/scenarios/{title}/levelcut/{maxLevel}", produces = "application/JSON")
     public Scenario getScenarioLevelCut(@PathVariable String title, @PathVariable Integer maxLevel) {
         logger.info("Getting ScenarioLevelCut for scenario with title: {} and cutting-level: {}", title, maxLevel);
         Scenario scenario = scenarioStorage.get(title);
@@ -170,11 +173,12 @@ public class ScenarioCheckerController {
     /**
      * Handles GET requests to the "/scenarios/{title}/missingactor" endpoint and returns
      * a list of steps with missing actors for the stored scenario with the given title.
+     * Produces application/JSON response.
      * Finding of missing actors is accomplished via the Visitor design pattern.
      * @param title the title of the scenario as a path variable
      * @return a list of steps with missing actors for the scenario with the given title
      */
-    @GetMapping("/scenarios/{title}/missingactor")
+    @GetMapping(value="/scenarios/{title}/missingactor", produces = "application/JSON")
     public List<Step> getScenarioMissingActor(@PathVariable("title")String title) {
         logger.info("Getting download for scenario with title: {}", title);
         Scenario scenario = scenarioStorage.get(title);
@@ -189,10 +193,11 @@ public class ScenarioCheckerController {
 
     /**
      * Handles GET requests to the "/scenarios/{title}/download" endpoint and returns a downloadable text file containing the scenario with the given title.
+     * Produces a plain text response.
      * @param title the title of the scenario as a path variable
      * @return a ResponseEntity containing a Resource representing the downloadable text file
      */
-    @GetMapping("/scenarios/{title}/download")
+    @GetMapping(value="/scenarios/{title}/download", produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<Resource> getDownloadScenario(@PathVariable("title")String title) {
         logger.debug("Getting download for scenario with title: {}", title);
         Scenario scenario=getScenario(title);
@@ -219,11 +224,12 @@ public class ScenarioCheckerController {
     /**
      * Handles GET requests to the "/scenario/stepcount" endpoint and returns
      * the step count for the scenario provided in the request body.
+     * Produces application/JSON response.
      * @param scenarioContent a JSON representation of the scenario as a request body
      * @return the step count for the provided scenario
      */
-    @GetMapping("/scenario/stepcount")
-    public Integer getRequestScenarioStepCount(@RequestBody String scenarioContent) {
+    @GetMapping(value = "/scenario/stepcount", produces = "application/JSON")
+    public String getRequestScenarioStepCount(@RequestBody String scenarioContent) {
         Scenario newScenario = null;
 
         try {
@@ -239,17 +245,19 @@ public class ScenarioCheckerController {
         ScenarioCountVisitor visitor = new ScenarioCountVisitor();
         newScenario.accept(visitor);
         logger.info("Returning step count {}",visitor.getStepCount());
-        return visitor.getStepCount();
+
+        return "{\"Step count\": " + visitor.getStepCount() + "}";
     }
 
     /**
      * Handles GET requests to the "/scenario/keywordcount" endpoint
      * and returns the keyword count for the scenario provided in the request body.
+     * Produces application/JSON response.
      * @param scenarioContent a JSON representation of the scenario as a request body
      * @return the keyword count for the provided scenario
      */
-    @GetMapping("/scenario/keywordcount")
-    public Integer getRequestScenarioKeywordCount(@RequestBody String scenarioContent) {
+    @GetMapping(value="/scenario/keywordcount", produces = "application/JSON")
+    public String getRequestScenarioKeywordCount(@RequestBody String scenarioContent) {
         Scenario newScenario = null;
 
         try {
@@ -265,19 +273,20 @@ public class ScenarioCheckerController {
         ScenarioKeyWordCountVisitor visitor = new ScenarioKeyWordCountVisitor();
         newScenario.accept(visitor);
         logger.info("Returning keyword count {}",visitor.getKeyWordCount());
-        return visitor.getKeyWordCount();
+        return "{\"Keyword count\": " + visitor.getKeyWordCount() + "}";
     }
 
     /**
      * Handles GET requests to the "/scenario/levelcut/{maxLevel}" endpoint
      * and returns a truncated version of the scenario provided in the request body.
+     * Produces application/JSON response
      * @param scenarioContent a JSON representation of the scenario as a request body
      * @param maxLevel the maximum level to include in the level-cut scenario as a path variable
      * @return a level-cut version of the provided scenario. The truncated Scenario
      * will be level-cut with accordance to specified value. For value of maxLevel
      * equal to 1, only the main scenario will be returned.
      */
-    @GetMapping("/scenario/levelcut/{maxLevel}")
+    @GetMapping(value="/scenario/levelcut/{maxLevel}", produces = "application/JSON")
     public Scenario getRequestScenarioLevelCut(@RequestBody String scenarioContent, @PathVariable Integer maxLevel) {
         Scenario newScenario = null;
 
@@ -305,10 +314,11 @@ public class ScenarioCheckerController {
      * Handles GET requests to the "/scenario/missingactor" endpoint
      * and returns a list of steps with missing actors for the scenario
      * provided in the request body.
+     * Produces application/JSON response
      * @param scenarioContent a JSON representation of the scenario as a request body
      * @return a list of steps with missing actors for the provided scenario
      */
-    @GetMapping("/scenario/missingactor")
+    @GetMapping(value="/scenario/missingactor", produces = "application/JSON")
     public List<Step> getRequestScenarioMissingActor(@RequestBody String scenarioContent) {
         Scenario newScenario = null;
 
@@ -332,10 +342,11 @@ public class ScenarioCheckerController {
     /**
      * Handles GET requests to the "/scenario/download" endpoint and
      * returns a downloadable text file containing the scenario provided in the request body.
+     * Produces a plain text response.
      * @param scenarioContent a JSON representation of the scenario as a request body
      * @return a ResponseEntity containing a Resource representing the downloadable text file
      */
-    @GetMapping("/scenario/download")
+    @GetMapping(value = "/scenario/download", produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<Resource> getRequestDownloadScenario(@RequestBody String scenarioContent) {
         Scenario scenario = null;
 
@@ -370,10 +381,11 @@ public class ScenarioCheckerController {
     /**
      * Handles POST requests to the "/scenario" endpoint and adds a new scenario
      * to the storage based on the JSON representation provided in the request body.
+     * Produces application/JSON response
      * @param scenarioContent a JSON representation of the scenario as a request body
      * @return the added scenario
      */
-    @PostMapping("/scenario")
+    @PostMapping(value="/scenario", produces="application/JSON")
     public Scenario addScenario(@RequestBody String scenarioContent) {
         Scenario newScenario = null;
 
@@ -396,10 +408,11 @@ public class ScenarioCheckerController {
     /**
      * Handles GET requests to the "/scenario/{title}" endpoint and
      * returns the scenario with the given title from the storage.
+     * Produces application/JSON response
      * @param title the title of the scenario as a path variable
      * @return the scenario with the given title
      */
-    @GetMapping("/scenarios/{title}")
+    @GetMapping(value = "/scenarios/{title}", produces = "application/JSON")
     public Scenario getScenario(@PathVariable("title")String title) {
         Scenario scenario=scenarioStorage.get(title);
         logger.info("Getting scenario of title{}", scenario.getTitle());
@@ -412,9 +425,10 @@ public class ScenarioCheckerController {
 
     /**
      * Handles GET requests to the "/scenarios" endpoint and returns all scenarios in the storage.
+     * Produces application/JSON response
      * @return a map containing all scenarios in the storage
      */
-    @GetMapping("/scenarios")
+    @GetMapping(value = "/scenarios", produces = "application/JSON")
     public Map<String, Scenario> getScenarios() {
         logger.info("Getting Scenarios");
         return scenarioStorage;
@@ -423,9 +437,10 @@ public class ScenarioCheckerController {
     /**
      * Handles DELETE requests to the "/scenarios" endpoint and
      * removes all scenarios from the storage.
+     * Produces application/JSON response
      * @return an empty map representing the cleared storage
      */
-    @DeleteMapping("/scenarios")
+    @DeleteMapping(value="/scenarios", produces="application/JSON")
     public Map<String, Scenario> deleteScenarios() {
         scenarioStorage.clear();
         logger.info("Deleting Scenarios");
@@ -435,10 +450,11 @@ public class ScenarioCheckerController {
     /**
      * Handles DELETE requests to the "/scenario/{title}" endpoint and
      * removes the scenario with the given title from the storage.
+     * Produces application/JSON response
      * @param title the title of the scenario to remove as a path variable
      * @return a map representing the updated storage after removing the scenario
      */
-    @DeleteMapping("/scenarios/{title}")
+    @DeleteMapping(value="/scenarios/{title}", produces="application/JSON")
     public Map<String, Scenario> deleteScenario(@PathVariable("title")String title) {
         scenarioStorage.remove(title);
         logger.info("Deleted Scenario with title {}", title);

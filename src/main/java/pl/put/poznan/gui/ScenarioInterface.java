@@ -20,6 +20,9 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.List;
 
+/**
+ * Class responsible for running the interface of the main application
+ */
 public class ScenarioInterface extends JFrame {
     private JPanel mainPanel;
     private JPanel titlePanel;
@@ -44,6 +47,10 @@ public class ScenarioInterface extends JFrame {
         frame.setVisible(true);
     }
 
+    /**
+     * ScenarioInterface constructor responsible for window logic
+     * @param title title to be displayed in the window
+     */
     public ScenarioInterface(String title){
         super(title);
 

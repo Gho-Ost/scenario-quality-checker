@@ -3,6 +3,9 @@ package pl.put.poznan.gui;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class responsible for creating an info window upon clicking the info button in the main application
+ */
 public class InfoWindow extends JFrame {
     private JTextArea infoTextArea;
     public InfoWindow(String title) {
