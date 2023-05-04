@@ -41,6 +41,27 @@ public class Step implements Visitable {
     }
 
     /**
+     * Constructor for the Step Class, taking step class instance as an argument.
+     * Created for the purposes of creating a deep copy of an object.
+     * @param step Step taken as an argument, presumably to be copied.
+     */
+    public Step(Step step){
+        this.actor = step.actor;
+        this.keyword = step.keyword;
+        this.action = step.action;
+        this.stepLevel = step.stepLevel;
+        this.substeps = new ArrayList<Step>();
+        if(step.substeps==null){
+            this.substeps=null;
+        }
+        else {
+            for (Step substep : step.substeps) {
+                this.substeps.add(new Step(substep));
+            }
+        }
+    }
+
+    /**
      * Prints this Step object and its substeps to the standard output stream.
      */
     public void printStep(){

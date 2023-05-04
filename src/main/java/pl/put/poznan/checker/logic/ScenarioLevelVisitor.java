@@ -74,13 +74,14 @@ public class ScenarioLevelVisitor implements Visitor{
      * @param step Step to be visited
      */
     public void visit(Step step){
-        int currentLevel=step.getStepLevel().split("\\.").length;
+        Step stepCopy=new Step(step);
+        int currentLevel=stepCopy.getStepLevel().split("\\.").length;
         if(currentLevel<=this.maxLevel){
             if(currentLevel+1>this.maxLevel){
-                step.setSubsteps(null);
+                stepCopy.setSubsteps(null);
             }
             if(currentLevel==1) {
-                this.steps.add(step);
+                this.steps.add(stepCopy);
             }
         }
     }

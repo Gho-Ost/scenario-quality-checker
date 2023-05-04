@@ -55,9 +55,8 @@ public class JSONParser {
             throw new RuntimeException(e);}
         try {
             Scenario test_scenario=parseScenarioObject(obj_2);
-            ScenarioTextDownloadVisitor test_visitor=new ScenarioTextDownloadVisitor();
+            ScenarioLevelVisitor test_visitor=new ScenarioLevelVisitor();
             test_scenario.accept(test_visitor);
-            System.out.println(test_visitor.getResult());
             System.out.println("tested");
         } catch (JSONException e) {
             throw new RuntimeException(e);
