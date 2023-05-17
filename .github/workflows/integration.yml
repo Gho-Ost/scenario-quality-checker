@@ -21,7 +21,7 @@ jobs:
           cache: maven
 
       - name: Build REST API
-        run: mvn package -pl checker
+        run: mvn package -pl io-project-architecture
 
       - name: Upload REST API JAR artifact
         uses: actions/upload-artifact@v2
