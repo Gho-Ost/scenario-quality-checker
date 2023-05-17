@@ -32,3 +32,8 @@ jobs:
       - name: Copy JAR Artifact
         run: cp target/*.jar ${{ github.workspace }}
  
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+            name: my-artifact
+            path: ${{ github.workspace }}/*.jar
