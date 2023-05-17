@@ -27,6 +27,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: rest-api-jar
-          path: /target/*.jar 
+          path: target/*.jar 
 
  
