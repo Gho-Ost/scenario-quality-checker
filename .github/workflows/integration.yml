@@ -11,12 +11,14 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
           java-version: '11'  
+          distribution: 'adopt'
+          cache: maven
 
       - name: Build REST API
         run: mvn package -pl checker
