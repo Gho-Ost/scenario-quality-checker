@@ -1,15 +1,37 @@
-name: Java CI
-on: [push]
+name: Java Build
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
         uses: actions/setup-java@v2
         with:
-          java-version: '11'
-          distribution: 'adopt'
-          cache: maven
-      - name: Validate, build and run tests
-        run: mvn --batch-mode --update-snapshots verify
+          java-version: '11'  
+
+      - name: Build REST API
+        run: mvn package -pl checker
+
+      - name: Upload REST API JAR artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: rest-api-jar
+          path: rest-api/target/*.jar 
+
+      - name: Build GUI App
+        run: mvn package -pl gui
+
+      - name: Upload GUI App JAR artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: gui-app-jar
+          path: gui-app/target/*.jar  
