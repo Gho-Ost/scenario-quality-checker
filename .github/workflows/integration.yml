@@ -28,5 +28,7 @@ jobs:
         with:
           name: rest-api-jar
           path: target/*.jar 
-
+      
+      - name: Copy JAR Artifact
+        run: cp target/*.jar ${{ github.workspace }}
  
