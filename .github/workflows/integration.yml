@@ -29,11 +29,4 @@ jobs:
           name: rest-api-jar
           path: rest-api/target/*.jar 
 
-      - name: Build GUI App
-        run: mvn package -pl gui
-
-      - name: Upload GUI App JAR artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: gui-app-jar
-          path: gui-app/target/*.jar  
+ 
