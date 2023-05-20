@@ -31,15 +31,7 @@ jobs:
           name: rest-api-jar
           path: target/*.jar 
 
-      
-  
-      
-      - name: Upload REST API JAR artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: rest-api-jar
-          path: target/*.jar
-          target-path: ${{ github.workspace }}/dist
+
 
   publish:
     runs-on: ubuntu-latest
