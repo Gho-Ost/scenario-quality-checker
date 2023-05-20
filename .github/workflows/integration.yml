@@ -32,7 +32,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.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 }}
+          GITHUB_TOKEN: ${{ secrets.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 }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
@@ -49,7 +49,7 @@ jobs:
       - name: Attach artifact to Release
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.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 }}
+          GITHUB_TOKEN: ${{ secrets.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 }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/dist/*.jar
