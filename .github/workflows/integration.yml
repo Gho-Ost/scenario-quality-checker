@@ -34,7 +34,7 @@ jobs:
           password: ${{secrets.MAIL_PASSWORD}}
           subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
           body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
-          to: adammielniczuk12@gmail.com
+          to: adammielniczuk12@gmail.com,mateusztabaszewski@gmail.com,bartek.pukacki@gmail.com
           from: Git Hub
       - name: Upload REST API JAR artifact
         uses: actions/upload-artifact@v2
