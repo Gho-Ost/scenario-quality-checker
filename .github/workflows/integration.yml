@@ -23,7 +23,7 @@ jobs:
           cache: maven
 
       - name: Build REST API
-        run: mvn package && exit 1
+        run: mvn package
       - name: Send mail
         if: ${{ failure() }}
         uses: dawidd6/action-send-mail@v3
