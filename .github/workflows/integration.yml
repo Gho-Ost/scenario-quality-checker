@@ -28,6 +28,7 @@ jobs:
         if: ${{ failure() }}
         uses: dawidd6/action-send-mail@v3
         with:
+          connection_url: ${{secrets.MAIL_CONNECTION}}
           server_address: smtp.gmail.com
           server_port: 465
           username: ${{secrets.MAIL_USERNAME}}
