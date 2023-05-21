@@ -23,15 +23,24 @@ jobs:
           cache: maven
 
       - name: Build REST API
-        run: mvn package 
-
+        run: mvn package && exit 1
+      - name: Send mail
+        if: ${{ failure() }}
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+          body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+          to: adammielniczuk12@gmail.com
       - name: Upload REST API JAR artifact
         uses: actions/upload-artifact@v2
         with:
           name: rest-api-jar
           path: target/*.jar 
-
-
+      
 
   publish:
     runs-on: ubuntu-latest
@@ -43,3 +52,4 @@ jobs:
           javadoc-branch: main
           java-version: '11'
           target-folder: javadoc 
+  
