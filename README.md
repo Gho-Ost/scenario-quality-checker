@@ -74,6 +74,10 @@ System actor: System<br>
 Step counter:
 - GET /scenario/stepcount
 
+Actor step counter:
+- GET /scenario/actorstepcount/{actor}<br>
+*actor - string name of the actor*
+
 Keyword counter:
 - GET /scenario/keywordcount
 
@@ -87,12 +91,19 @@ Missing actor:
 Download text:
 - GET /scenario/download
 
+Rename actor:
+- GET /scenario/renameactor/{oldactor}/{newactor} <br>
+*oldactor, newactor - string names of actor to be replaced, new actor name*
+
 ### working with stored scenarios
 *title - title of the scenario*
 
 Adding a scenario to storage:
 - POST /scenario <br>
 *with included request body in JSON*
+
+Appending a step to a scenario:
+- POST /scenarios/{title}/step
 
 Getting all scenarios:
 - GET /scenarios
@@ -106,8 +117,16 @@ Deleting all scenarios:
 Deleting a scenario by title:
 - DELETE /scenarios/{title}
 
+Deleting a step of a scenario:
+- DELETE /scenarios/{title}/step/{stepLevel}<br>
+*stepLevel - string step level of the deleted step e.g. 3, 2.1.2*
+
 Step counter:
 - GET /scenarios/{title}/stepcount
+
+Actor step counter:
+- GET /scenarios/{title}/actorstepcount/{actor}<br>
+*actor - string name of the actor*
 
 Keyword counter:
 - GET /scenarios/{title}/keywordcount
@@ -121,6 +140,10 @@ Missing actor:
 
 Download:
 - GET /scenarios/{title}/download
+
+Rename actor:
+- GET /scenarios/{title}/renameactor/{oldactor}/{newactor} <br>
+*oldactor, newactor - string names of actor to be replaced, new actor name*
 
 ---
 
