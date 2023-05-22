@@ -6,11 +6,13 @@ import org.json.JSONObject;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import pl.put.poznan.checker.logic.JSONParser;
 import pl.put.poznan.checker.logic.ScenarioAppendStepVisitor;
 import pl.put.poznan.checker.model.Scenario;
 import pl.put.poznan.checker.model.Step;
 
+@RestController
 public class AppendScenarioStepController extends ScenarioController {
 
     AppendScenarioStepController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
@@ -38,6 +40,6 @@ public class AppendScenarioStepController extends ScenarioController {
         ScenarioAppendStepVisitor appendStepVisitor = new ScenarioAppendStepVisitor(newStep);
         newScenario.accept(appendStepVisitor);
 
-        return newScenario;
+        return appendStepVisitor.getScenario();
     }
 }

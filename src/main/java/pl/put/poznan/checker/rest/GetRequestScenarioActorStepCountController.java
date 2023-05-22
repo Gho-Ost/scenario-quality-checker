@@ -5,12 +5,14 @@ import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import pl.put.poznan.checker.logic.JSONParser;
 import pl.put.poznan.checker.logic.ScenarioActorStepCountVisitor;
 import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
 
+@RestController
 public class GetRequestScenarioActorStepCountController extends ScenarioController {
     GetRequestScenarioActorStepCountController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
         super(storage, logger);
@@ -38,6 +40,6 @@ public class GetRequestScenarioActorStepCountController extends ScenarioControll
         newScenario.accept(actorStepCountVisitor);
         ScenarioCheckerLogger.logger.info("Returning step count {}", actorStepCountVisitor.getActorStepCount());
 
-        return "{" + actor + "\"step count\": " + actorStepCountVisitor.getActorStepCount() + "}";
+        return "{\"" + actor + " step count\": " + actorStepCountVisitor.getActorStepCount() + "}";
     }
 }

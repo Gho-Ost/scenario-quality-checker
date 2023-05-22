@@ -1,12 +1,10 @@
 package pl.put.poznan.checker.rest;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.checker.logic.ScenarioDeleteStepVisitor;
 import pl.put.poznan.checker.model.Scenario;
 
+@RestController
 public class DeleteScenarioStepController extends ScenarioController {
     DeleteScenarioStepController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
         super(storage, logger);
@@ -22,6 +20,6 @@ public class DeleteScenarioStepController extends ScenarioController {
         ScenarioDeleteStepVisitor deleteStepVisitor = new ScenarioDeleteStepVisitor(stepLevel);
         scenario.accept(deleteStepVisitor);
 
-        return scenario;
+        return deleteStepVisitor.getScenario();
     }
 }
