@@ -22,7 +22,6 @@ public class GetScenarioKeywordCount extends ScenarioController{
      * @param title the title of the scenario as a path variable
      * @return the keyword count for the scenario with the given title
      */
-
     @GetMapping(value="/scenarios/{title}/keywordcount", produces = "application/JSON")
     public String getScenarioKeywordCount(@PathVariable("title")String title) {
         ScenarioCheckerLogger.logger.debug("Getting keyword count for scenario with title: {}", title);
