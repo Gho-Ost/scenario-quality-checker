@@ -20,7 +20,7 @@ public class AppendScenarioStepController extends ScenarioController {
     /**
      * Handles POST requests to the append step to an existing scenario
      */
-    @PostMapping(value="/scenarios/{title}/append", produces="application/JSON")
+    @PostMapping(value="/scenarios/{title}/step", produces="application/JSON")
     public Scenario appendScenario(@PathVariable("title")String title, @RequestBody String stepContent) {
         Scenario newScenario = storage.scenarios.get(title);;
         Step newStep = null;
