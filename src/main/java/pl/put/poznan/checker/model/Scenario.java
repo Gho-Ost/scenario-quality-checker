@@ -78,8 +78,10 @@ public class Scenario implements Visitable {
         }
         System.out.println("System actor: " + this.systemActor);
 
-        for (Step step : this.steps){
-            step.printStep();
+        if (this.steps != null){
+            for (Step step : this.steps){
+                step.printStep();
+            }
         }
     }
 
