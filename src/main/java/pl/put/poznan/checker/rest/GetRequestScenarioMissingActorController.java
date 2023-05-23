@@ -13,6 +13,10 @@ import pl.put.poznan.checker.model.Step;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * REST controller for handling GET requests to perform search for missing actors.
+ * Implemented in accordance with REST framework.
+ */
 @RestController
 public class GetRequestScenarioMissingActorController extends ScenarioController{
     GetRequestScenarioMissingActorController(ScenarioStorage storage, ScenarioCheckerLogger logger) {

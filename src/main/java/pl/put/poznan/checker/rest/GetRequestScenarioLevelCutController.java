@@ -12,6 +12,10 @@ import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
 
+/**
+ * REST controller for handling GET requests to perform level cutting at a specified level.
+ * Implemented in accordance with REST framework.
+ */
 @RestController
 public class GetRequestScenarioLevelCutController extends ScenarioController{
     GetRequestScenarioLevelCutController(ScenarioStorage storage, ScenarioCheckerLogger logger) {

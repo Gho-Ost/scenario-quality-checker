@@ -9,6 +9,9 @@ import pl.put.poznan.checker.model.Step;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Component for logging messages related to scenario checking using the SLF4J logging API.
+ */
 @Component
 public class ScenarioCheckerLogger {
     /**

@@ -8,6 +8,10 @@ import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
 
+/**
+ * REST controller responsible for performing the keyword count operation.
+ * Implemented in accordance with REST framework.
+ */
 @RestController
 public class GetScenarioKeywordCount extends ScenarioController{
     GetScenarioKeywordCount(ScenarioStorage storage, ScenarioCheckerLogger logger) {

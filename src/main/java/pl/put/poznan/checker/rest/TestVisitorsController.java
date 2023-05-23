@@ -10,8 +10,18 @@ import pl.put.poznan.checker.logic.*;
 import pl.put.poznan.checker.model.Scenario;
 import pl.put.poznan.checker.model.Step;
 
+/**
+ * REST controller implemented for the sake fo tetsing the Visitor
+ * functionality in a REST framework.
+ */
 @RestController
 public class TestVisitorsController extends ScenarioController{
+    /**
+     * Constructor for TestVisitorsController with the given storage and logger.
+     *
+     * @param storage (ScenarioStorage) the storage to use for scenarios
+     * @param logger (ScenarioCheckerLogger) the logger to use for logging
+     */
     TestVisitorsController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
         super(storage, logger);
     }

@@ -6,6 +6,10 @@ import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Map;
 
+/**
+ * REST controller responsible for deleting scenarios.
+ * Implemented in accordance with REST framework.
+ */
 @RestController
 public class DeleteScenariosController extends ScenarioController{
     DeleteScenariosController(ScenarioStorage storage, ScenarioCheckerLogger logger) {

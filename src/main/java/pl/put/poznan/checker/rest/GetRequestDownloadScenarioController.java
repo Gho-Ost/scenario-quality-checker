@@ -16,6 +16,10 @@ import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
 
+/**
+ * REST controller for handling GET requests to download a scenario as a text file.
+ * Implemented in accordance with REST framework.
+ */
 @RestController
 public class GetRequestDownloadScenarioController extends ScenarioController{
     GetRequestDownloadScenarioController(ScenarioStorage storage, ScenarioCheckerLogger logger) {

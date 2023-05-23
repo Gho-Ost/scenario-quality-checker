@@ -10,6 +10,11 @@ import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
 
+/**
+ * Controller class created in accordance to REST framework,
+ * responsible for handling the implementation of the AddScenario() functionality
+ * in the Rest framework.
+ */
 @RestController
 public class AddScenarioController extends ScenarioController {
     AddScenarioController(ScenarioStorage storage, ScenarioCheckerLogger logger){

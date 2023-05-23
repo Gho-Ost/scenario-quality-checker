@@ -13,6 +13,9 @@ import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
 
+/**
+ * REST controller responsible for downloading a Scenario. Implemented in accordance with REST framework.
+ */
 @RestController
 public class GetDownloadScenarioController extends ScenarioController{
     GetDownloadScenarioController(ScenarioStorage storage, ScenarioCheckerLogger logger) {

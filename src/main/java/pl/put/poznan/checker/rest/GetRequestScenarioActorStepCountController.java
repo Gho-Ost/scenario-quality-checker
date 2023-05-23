@@ -12,6 +12,10 @@ import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
 
+/**
+ * REST controller for handling GET requests to perform count on the number of steps performed
+ * by a given actor. Implemented in accordance with REST framework.
+ */
 @RestController
 public class GetRequestScenarioActorStepCountController extends ScenarioController {
     GetRequestScenarioActorStepCountController(ScenarioStorage storage, ScenarioCheckerLogger logger) {

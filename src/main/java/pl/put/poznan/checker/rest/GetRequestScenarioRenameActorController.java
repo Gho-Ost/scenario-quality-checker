@@ -12,6 +12,10 @@ import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
 
+/**
+ * REST controller for handling GET requests to perform the rename operation on a specified actor.
+ * Implemented in accordance with REST framework.
+ */
 @RestController
 public class GetRequestScenarioRenameActorController extends ScenarioController{
     GetRequestScenarioRenameActorController(ScenarioStorage storage, ScenarioCheckerLogger logger) {

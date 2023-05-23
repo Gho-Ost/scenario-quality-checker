@@ -8,6 +8,10 @@ import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
 
+/**
+ * REST controller responsible for performing the step-count operation on a Scenario.
+ * Implemented in accordance with REST framework.
+ */
 @RestController
 public class GetScenarioStepCountController extends ScenarioController{
     GetScenarioStepCountController(ScenarioStorage storage, ScenarioCheckerLogger logger) {

@@ -6,6 +6,10 @@ import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Map;
 
+/**
+ * REST controller responsible for retrieving a Scenario.
+ * Implemented in accordance with REST framework.
+ */
 @RestController
 public class GetScenariosController extends ScenarioController{
     GetScenariosController(ScenarioStorage storage, ScenarioCheckerLogger logger) {

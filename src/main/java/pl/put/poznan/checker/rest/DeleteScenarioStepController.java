@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.checker.logic.ScenarioDeleteStepVisitor;
 import pl.put.poznan.checker.model.Scenario;
 
+/**
+ * REST controller responsible for deleting a step. Implemented in accordance with REST framework.
+ */
 @RestController
 public class DeleteScenarioStepController extends ScenarioController {
     DeleteScenarioStepController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
