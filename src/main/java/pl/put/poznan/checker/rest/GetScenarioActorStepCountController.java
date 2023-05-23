@@ -26,7 +26,13 @@ public class GetScenarioActorStepCountController extends ScenarioController {
     }
 
     /**
-     * Handles GET requests to the "scenarios/{title}/actorstepcount/{actor}"
+     * Handles GET requests to the "/scenarios/{title}/actorstepcount/{actor}" endpoint
+     * and returns the number of steps for the given actor in the stored scenario with the given title.
+     * The number of steps for the given actor is returned inside the response body as a JSON object.
+     *
+     * @param title (String) the title of the scenario to count steps for, as a path variable
+     * @param actor (String) the name of the actor to count steps for, as a path variable
+     * @return (String) a JSON object containing the number of steps for the given actor
      */
     @GetMapping(value = "scenarios/{title}/actorstepcount/{actor}", produces = "application/JSON")
     public String getScenarioActorStepCount(@PathVariable("title")String title, @PathVariable("actor")String actor) {

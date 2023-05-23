@@ -22,7 +22,13 @@ public class DeleteScenarioStepController extends ScenarioController {
 
 
     /**
-     * Handles DELETE requests to the delete step of an existing scenario
+     * Handles DELETE requests to the "/scenarios/{title}/step/{stepLevel}" endpoint and deletes a step from the scenario with the given title.
+     *
+     * The step to delete is identified by provided String type stepLevel variable.
+     *
+     * @param title (String) the title of the scenario to delete the step from, as a path variable
+     * @param stepLevel (String) the level of the step to delete, as a path variable
+     * @return (Scenario) the updated scenario with the step deleted
      */
     @DeleteMapping(value="/scenarios/{title}/step/{stepLevel:.+}", produces="application/JSON")
     public Scenario deleteStep(@PathVariable("title")String title, @PathVariable("stepLevel")String stepLevel) {

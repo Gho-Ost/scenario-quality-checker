@@ -30,7 +30,14 @@ public class GetRequestScenarioRenameActorController extends ScenarioController{
     }
 
     /**
-     * Handles GET requests to the "/scenario/renameactor/{oldactor}/{newactor}" endpoint
+     * Handles GET requests to the "/scenario/renameactor/{oldactor}/{newactor}" endpoint and
+     * renames the given actor in the scenario provided in the request body.
+     * The updated scenario with the actor renamed is returned inside the response body as a JSON object.
+     *
+     * @param scenarioContent (String) a JSON representation of the scenario as a request body
+     * @param oldactor (String) the name of the actor to rename, as a path variable
+     * @param newactor (String) the new name for the actor, as a path variable
+     * @return (Scenario) the updated scenario with the actor renamed
      */
     @GetMapping(value="/scenario/renameactor/{oldactor}/{newactor}", produces = "application/JSON")
     public Scenario getRequestScenarioRenameActor(@RequestBody String scenarioContent, @PathVariable("oldactor")String oldactor, @PathVariable("newactor")String newactor) {

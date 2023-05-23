@@ -24,7 +24,14 @@ public class GetScenarioRenameActorController extends ScenarioController {
     }
 
     /**
-     * Handles GET requests to the "/scenarios/{title}/renameactor/{oldactor}/{newactor}"
+     * Handles GET requests to the "/scenarios/{title}/renameactor/{oldactor}/{newactor}" endpoint
+     * and renames the given actor in the stored scenario with the given title.
+     * The updated scenario with the actor renamed is returned inside the response body as a JSON object.
+     *
+     * @param title (String) the title of the scenario to rename the actor in, as a path variable
+     * @param oldactor (String) the name of the actor to rename, as a path variable
+     * @param newactor (String) the new name for the actor, as a path variable
+     * @return (Scenario) the updated scenario with the actor renamed
      */
     @GetMapping(value="/scenarios/{title}/renameactor/{oldactor}/{newactor}", produces = "application/JSON")
     public Scenario getScenariosRenameActor(@PathVariable("title")String title, @PathVariable("oldactor")String oldactor, @PathVariable("newactor")String newactor) {
