@@ -9,8 +9,17 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Testing class implemented to test ScenarioAppendStepVisitor class
+ * functionality with the use of unit tests performed with JUnit library.
+ */
 class ScenarioAppendStepVisitorTest {
 
+    /**
+     * Test for the visit() method of the ScenarioAppendStepVisitor class
+     * with the assertion testing if the implemented visitor design pattern
+     * appropriately appends a Step to an existing Scenario.
+     */
     @Test
     void visit() {
         Step step2 = new Step("actor0", "keyword0", "action0", null, "0");

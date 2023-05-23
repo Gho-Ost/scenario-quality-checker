@@ -10,6 +10,10 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Testing class implemented to test ScenarioDeleteStepVisitor class
+ * functionality with the use of unit tests performed with JUnit library.
+ */
 class ScenarioDeleteStepVisitorTest {
     Scenario scenario;
     Step step3_3_2;
@@ -23,6 +27,11 @@ class ScenarioDeleteStepVisitorTest {
     Step step2;
     Step step1;
 
+    /**
+     * Method responsible for setting up the appropriate variables for future tests.
+     * In this case the method creates a test Scenario that the future tests will use to
+     * evaluate if the tested implementations are working correctly.
+     */
     @BeforeEach
     void setUp(){
         step3_3_2 = new Step("actor10", "keyword10", "action10", null, "3.3.2");
@@ -39,6 +48,12 @@ class ScenarioDeleteStepVisitorTest {
 
     }
 
+    /**
+     * Test for the ScenarioDeleteStepVisitor class
+     * checking the correctness of deleting a Step given a
+     * number representing the selected step for the first level deletion
+     * with help of unit testing library JUnit.
+     */
     @Test
     void visitFirstLevel() {
         ScenarioDeleteStepVisitor visitor = new ScenarioDeleteStepVisitor("1");
@@ -113,6 +128,12 @@ class ScenarioDeleteStepVisitorTest {
 
     }
 
+    /**
+     * Test for the ScenarioDeleteStepVisitor class
+     * checking the correctness of deleting a Step given a
+     * number representing the selected step for the first level deletion
+     * of a step with children with help of unit testing library JUnit.
+     */
     @Test
     void visitFirstLevelWithChildren(){
         ScenarioDeleteStepVisitor visitor = new ScenarioDeleteStepVisitor("3");
@@ -150,6 +171,13 @@ class ScenarioDeleteStepVisitorTest {
         assertNull(actualList.get(1).getSubsteps());
     }
 
+    /**
+     * Test for the ScenarioDeleteStepVisitor class
+     * checking the correctness of deleting a Step given a
+     * number representing the selected step for the nested level of
+     * deletion of depth two with the help of a Unit
+     * testing library JUnit.
+     */
     @Test
     void visitSubstep(){
         ScenarioDeleteStepVisitor visitor = new ScenarioDeleteStepVisitor("3.3");

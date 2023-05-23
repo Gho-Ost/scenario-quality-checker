@@ -29,7 +29,8 @@ public class ScenarioDeleteStepVisitor implements Visitor{
 
     /**
      * Constructor for ScenarioDeleteStepVisitor class. Takes one argument - step to be deleted.
-     * @param selectedStep (Step) step to be deleted
+     * @param selectedStep (String) step number written like "3.2.2" to be deleted. In the given
+     *                     example "3.2.2" means the second step of a second substep of a third step.
      */
     public ScenarioDeleteStepVisitor(String selectedStep) {
         this.selectedStep = selectedStep;

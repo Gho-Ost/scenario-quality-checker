@@ -9,8 +9,17 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Testing class implemented to test ScenarioStepCountVisitor class
+ * functionality with the use of unit tests performed with JUnit library.
+ */
 class ScenarioStepCountVisitorTest {
 
+    /**
+     * Test for the visit() method of the ScenarioActorStepCountVisitor class
+     * with the assertion testing if the implemented visitor design pattern
+     * appropriately counts number of steps present in a Scenario.
+     */
     @Test
     void visit() {
         Step step2_3_2 = new Step("actor0", "keyword0", "action0", null, "0");
@@ -32,6 +41,12 @@ class ScenarioStepCountVisitorTest {
 
     }
 
+    /**
+     * Test for the visit() method of the ScenarioActorStepCountVisitor class
+     * with the assertion testing if the implemented visitor design pattern
+     * appropriately counts the number of Steps present in a Scenario even when
+     * visiting the same Scenario multiple times.
+     */
     @Test
     void twoVisits(){
         Step step2_3_2 = new Step("actor0", "keyword0", "action0", null, "0");

@@ -12,8 +12,17 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Testing class implemented to test Scenario class functionality
+ * with the use of unit tests performed with JUnit library and Mockito libraries.
+ */
 class ScenarioTest {
 
+    /**
+     * Testing method written to assert the correctness of the implementation of the "accept()"
+     * method in the Scenario. Tested by creating a Mock visitor and checking the order
+     * of visited steps.
+     */
     @Test
     void accept() {
         Step step2_3_2 = new Step("actor0", "keyword0", "action0", null, "0");

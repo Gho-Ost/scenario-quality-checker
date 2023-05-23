@@ -10,10 +10,18 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Testing class implemented to test ScenarioActorStepCountVisitor class
+ * functionality with the use of unit tests performed with JUnit library.
+ */
 class ScenarioActorStepCountVisitorTest {
     Scenario scenario;
 
-
+    /**
+     * Method responsible for setting up the appropriate variables for future tests.
+     * In this case the method creates a test Scenario that the future tests will use to
+     * evaluate if the tested implementations are working correctly.
+     */
     @BeforeEach
     void setup(){
         Step step2_3_2 = new Step("actor0", "keyword0", "action0", null, "0");
@@ -29,6 +37,11 @@ class ScenarioActorStepCountVisitorTest {
         scenario = new Scenario("scenario0", new String[]{"actor0, actor1"}, "actor2",new ArrayList<>(Arrays.asList(step0, step1, step2)));
     }
 
+    /**
+     * Test for the visit() method of the ScenarioActorStepCountVisitor class
+     * with the assertion testing if the implemented visitor design pattern
+     * appropriately counts the ActorStepCount.
+     */
     @Test
     void visit() {
         ScenarioActorStepCountVisitor visitor = new ScenarioActorStepCountVisitor("actor0");
@@ -38,6 +51,12 @@ class ScenarioActorStepCountVisitorTest {
         assertEquals(3, visitor.getActorStepCount());
     }
 
+    /**
+     * Test for the visit() method of the ScenarioActorStepCountVisitor class
+     * with the assertion testing if the implemented visitor design pattern
+     * appropriately counts the ActorStepCount for the case of testing multiple
+     * the presence of multiple actors.
+     */
     @Test
     void multipleVisits(){
 
@@ -55,6 +74,12 @@ class ScenarioActorStepCountVisitorTest {
         assertEquals(3, visitor.getActorStepCount());
     }
 
+    /**
+     * Test for the visit() method of the ScenarioActorStepCountVisitor class
+     * with the assertion testing if the implemented visitor design pattern
+     * appropriately counts the ActorStepCount for the case of testing for an
+     * actor that is not in the Scenario.
+     */
     @Test
     void unknownActor(){
         ScenarioActorStepCountVisitor visitor = new ScenarioActorStepCountVisitor("unknown actor");
@@ -62,6 +87,13 @@ class ScenarioActorStepCountVisitorTest {
         scenario.accept(visitor);
         assertEquals(0, visitor.getActorStepCount());
     }
+
+    /**
+     * Test for the visit() method of the ScenarioActorStepCountVisitor class
+     * with the assertion testing if the implemented visitor design pattern
+     * appropriately counts the ActorStepCount for the case of handling a Scenario with
+     * null values for some actors.
+     */
 
     @Test
     void scenarioWithMissingActors(){
