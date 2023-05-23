@@ -17,6 +17,13 @@ import java.util.Arrays;
  */
 @RestController
 public class GetRequestScenarioStepCountController extends  ScenarioController{
+
+    /**
+     * Constructor for GetRequestScenarioStepCountController with the given storage and logger.
+     *
+     * @param storage (ScenarioStorage) the storage to use for scenarios
+     * @param logger (ScenarioCheckerLogger) the logger to use for logging
+     */
     GetRequestScenarioStepCountController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
         super(storage, logger);
     }

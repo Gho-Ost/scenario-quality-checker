@@ -19,6 +19,13 @@ import java.util.List;
  */
 @RestController
 public class GetRequestScenarioMissingActorController extends ScenarioController{
+
+    /**
+     * Constructor for GetRequestScenarioMissingActorController with the given storage and logger.
+     *
+     * @param storage (ScenarioStorage) the storage to use for scenarios
+     * @param logger (ScenarioCheckerLogger) the logger to use for logging
+     */
     GetRequestScenarioMissingActorController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
         super(storage, logger);
     }

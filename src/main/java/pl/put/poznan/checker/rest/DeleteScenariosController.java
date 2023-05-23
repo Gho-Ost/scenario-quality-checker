@@ -12,6 +12,13 @@ import java.util.Map;
  */
 @RestController
 public class DeleteScenariosController extends ScenarioController{
+
+    /**
+     * Constructor for DeleteScenariosController with the given storage and logger.
+     *
+     * @param storage (ScenarioStorage) the storage to use for scenarios
+     * @param logger (ScenarioCheckerLogger) the logger to use for logging
+     */
     DeleteScenariosController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
         super(storage, logger);
     }

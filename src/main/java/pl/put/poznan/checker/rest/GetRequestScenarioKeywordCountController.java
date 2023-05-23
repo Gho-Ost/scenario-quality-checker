@@ -17,6 +17,13 @@ import java.util.Arrays;
  */
 @RestController
 public class GetRequestScenarioKeywordCountController extends ScenarioController{
+
+    /**
+     * Constructor for GetRequestScenarioKeywordCountController with the given storage and logger.
+     *
+     * @param storage (ScenarioStorage) the storage to use for scenarios
+     * @param logger (ScenarioCheckerLogger) the logger to use for logging
+     */
     GetRequestScenarioKeywordCountController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
         super(storage, logger);
     }

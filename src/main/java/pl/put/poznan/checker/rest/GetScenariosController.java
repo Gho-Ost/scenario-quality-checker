@@ -12,6 +12,13 @@ import java.util.Map;
  */
 @RestController
 public class GetScenariosController extends ScenarioController{
+
+    /**
+     * Constructor for GetScenariosController with the given storage and logger.
+     *
+     * @param storage (ScenarioStorage) the storage to use for scenarios
+     * @param logger (ScenarioCheckerLogger) the logger to use for logging
+     */
     GetScenariosController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
         super(storage, logger);
     }

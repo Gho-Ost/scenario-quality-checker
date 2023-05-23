@@ -12,6 +12,13 @@ import pl.put.poznan.checker.model.Scenario;
  */
 @RestController
 public class GetScenarioRenameActorController extends ScenarioController {
+
+    /**
+     * Constructor for GetScenarioRenameActorController with the given storage and logger.
+     *
+     * @param storage (ScenarioStorage) the storage to use for scenarios
+     * @param logger (ScenarioCheckerLogger) the logger to use for logging
+     */
     GetScenarioRenameActorController(ScenarioStorage storage, ScenarioCheckerLogger logger) {
         super(storage, logger);
     }
