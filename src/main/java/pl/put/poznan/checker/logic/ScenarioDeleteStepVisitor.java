@@ -6,7 +6,18 @@ import pl.put.poznan.checker.model.Step;
 import java.util.ArrayList;
 
 /**
- * MODIFIES EXISITNG SCENARIO
+ * Class responsible for deleting a chosen step for a Scenario by the means of
+ * implementation of Visitor design pattern acheived through the use of the Visitor
+ * interface. Here is an example code,
+ * with the assumption that my_scenario is an already existing Scenario and
+ * newStep1 is some predefined Step to be deleted:
+ *  <pre>
+ *  {@code
+ *  ScenarioDeleteStepVisitor visitor = new ScenarioDeleteStepVisitor(newStep1);
+ *  my_scenario.accept(visitor);
+ *  visitor.getScenario();
+ *   }
+ *  </pre>
  */
 public class ScenarioDeleteStepVisitor implements Visitor{
 
@@ -16,12 +27,18 @@ public class ScenarioDeleteStepVisitor implements Visitor{
     private boolean decreaseSteps = false;
     private boolean decreaseStepsBase = false;
 
+    /**
+     * Constructor for ScenarioDeleteStepVisitor class. Takes one argument - step to be deleted.
+     * @param selectedStep (Step) step to be deleted
+     */
     public ScenarioDeleteStepVisitor(String selectedStep) {
         this.selectedStep = selectedStep;
     }
 
     /**
-     * @param scenario - Scenario to be visited
+     * Visit method implemented on the level of Scenario as part of the Visitor design pattern,
+     * required due to implementation of Visitor interface.
+     * @param scenario Scenario to be visited
      */
     @Override
     public void visit(Scenario scenario) {
@@ -29,7 +46,8 @@ public class ScenarioDeleteStepVisitor implements Visitor{
         this.steps = new ArrayList<Step>();
     }
 
-    /**
+    /** Visit method implemented on the level of a Step as part of the Visitor design pattern,
+     * required due to implementation of Visitor interface.
      * @param step
      */
     @Override
@@ -64,10 +82,11 @@ public class ScenarioDeleteStepVisitor implements Visitor{
     }
 
     /**
-     * Reduces the step level at each substep at a correct position
-     * @param substeps
-     * @param position
-     * @return
+     * Method sued to handle the numbering of steps when performing the process of deletion.
+     * Reduces the step level at each substep at a correct position.
+     * @param substeps (ArrayList<Step> substeps) substeps to be modified
+     * @param position (Integer) position of the Step
+     * @return newSubsteps (ArrayList<Step>)
      */
     private ArrayList<Step> decreaseSubsteps(ArrayList<Step> substeps, int position) {
         ArrayList<Step> newSubsteps = new ArrayList<Step>();
@@ -90,9 +109,10 @@ public class ScenarioDeleteStepVisitor implements Visitor{
     }
 
     /**
-     * Finds the substeps of the same level as the selected step
-     * @param substeps
-     * @return
+     * Method responsible for finding substeps of the same selected Step,
+     * uses modifySubsteps method.
+     * @param substeps (ArrayList<Step> substeps) steps to be modified
+     * @return substitute steps (ArrayList<Step>)
      */
     private ArrayList<Step> findSubsteps(ArrayList<Step> substeps) {
         ArrayList<Step> substitute = new ArrayList<Step>();
@@ -111,9 +131,9 @@ public class ScenarioDeleteStepVisitor implements Visitor{
     }
 
     /**
-     * Modifies the substeps of the same level as the selected step
-     * @param substeps
-     * @return
+     * Method for modifying substeps of the same level as a selected Step
+     * @param substeps (ArrayList <Step>) substeps to be modified
+     * @return substitute substeps (ArrayList<Step>)
      */
     private ArrayList<Step> modifySubsteps(ArrayList<Step> substeps) {
         ArrayList<Step> substitute = new ArrayList<Step>();
@@ -143,6 +163,10 @@ public class ScenarioDeleteStepVisitor implements Visitor{
         return substitute;
     }
 
+    /**
+     * Getter, returns the modified Scenario.
+     * @return (Scenario) scenario modified by the Visitor
+     */
     public Scenario getScenario(){
         scenario.setSteps(this.steps);
         return scenario;
