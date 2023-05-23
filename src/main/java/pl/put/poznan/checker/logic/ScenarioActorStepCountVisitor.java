@@ -17,7 +17,7 @@ public class ScenarioActorStepCountVisitor implements Visitor {
      */
     @Override
     public void visit(Scenario scenario) {
-
+        actorStepCount = 0;
     }
 
     /**
@@ -28,6 +28,10 @@ public class ScenarioActorStepCountVisitor implements Visitor {
         if (step.getActor() != null && step.getActor().equals(this.selectedActor)){
             actorStepCount ++;
         }
+    }
+
+    public void setSelectedActor(String selectedActor) {
+        this.selectedActor = selectedActor;
     }
 
     public int getActorStepCount() {

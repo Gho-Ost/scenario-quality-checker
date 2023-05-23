@@ -1,3 +1,5 @@
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\test\java\pl\put\poznan\checker\model\ScenarioTest.java
-D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\test\java\pl\put\poznan\checker\logic\ScenarioCountVisitorTest.java
+D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\test\java\pl\put\poznan\checker\logic\ScenarioActorStepCountVisitorTest.java
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\test\java\pl\put\poznan\checker\model\StepTest.java
+D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\test\java\pl\put\poznan\checker\logic\ScenarioStepCountVisitorTest.java
+D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\test\java\pl\put\poznan\checker\logic\ScenarioActorRenameVisitorTest.java

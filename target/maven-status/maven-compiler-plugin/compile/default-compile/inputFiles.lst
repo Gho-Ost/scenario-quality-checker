@@ -1,4 +1,5 @@
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\logic\JSONParser.java
+D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\logic\ScenarioStepCountVisitor.java
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\rest\GetRequestScenarioKeywordCountController.java
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\rest\GetRequestScenarioLevelCutController.java
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\rest\DeleteScenariosController.java
@@ -36,7 +37,6 @@ D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\j
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\logic\ScenarioChecker.java
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\rest\GetScenarioStepCountController.java
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\rest\AddScenarioController.java
-D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\logic\ScenarioCountVisitor.java
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\rest\GetDownloadScenarioController.java
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\logic\ScenarioTextDownloadVisitor.java
 D:\Krzysiaczek\Documents\studia\softwere_eng\scenario-quality-checker\src\main\java\pl\put\poznan\checker\model\Scenario.java
