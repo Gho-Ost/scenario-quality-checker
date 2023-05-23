@@ -3,7 +3,7 @@ package pl.put.poznan.checker.rest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import pl.put.poznan.checker.logic.ScenarioCountVisitor;
+import pl.put.poznan.checker.logic.ScenarioStepCountVisitor;
 import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public class GetScenarioStepCountController extends ScenarioController{
         ScenarioCheckerLogger.logger.debug("Received scenario with title: {} actors: {} systemActor: {}",
                 scenario.getTitle(), Arrays.toString(scenario.getActors()),
                 scenario.getSystemActor());
-        ScenarioCountVisitor visitor = new ScenarioCountVisitor();
+        ScenarioStepCountVisitor visitor = new ScenarioStepCountVisitor();
         scenario.accept(visitor);
         Integer stepCount = visitor.getStepCount();
         super.logger.logger.info("Step count for scenario with title {}: {}", title, stepCount);

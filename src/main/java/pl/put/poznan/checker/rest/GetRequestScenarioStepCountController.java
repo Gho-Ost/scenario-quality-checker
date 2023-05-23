@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.put.poznan.checker.logic.JSONParser;
-import pl.put.poznan.checker.logic.ScenarioCountVisitor;
+import pl.put.poznan.checker.logic.ScenarioStepCountVisitor;
 import pl.put.poznan.checker.model.Scenario;
 
 import java.util.Arrays;
@@ -38,7 +38,7 @@ public class GetRequestScenarioStepCountController extends  ScenarioController{
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-        ScenarioCountVisitor visitor = new ScenarioCountVisitor();
+        ScenarioStepCountVisitor visitor = new ScenarioStepCountVisitor();
         newScenario.accept(visitor);
         ScenarioCheckerLogger.logger.info("Returning step count {}",visitor.getStepCount());
 

@@ -40,7 +40,7 @@ public class TestVisitorsController extends ScenarioController{
 //         newScenario.printScenario();
 //
 //        ScenarioTextDownloadVisitor textVisitor = new ScenarioTextDownloadVisitor();
-//        ScenarioCountVisitor countVisitor = new ScenarioCountVisitor();
+//        ScenarioStepCountVisitor countVisitor = new ScenarioStepCountVisitor();
 //        ScenarioKeyWordCountVisitor keyWordCountVisitor = new ScenarioKeyWordCountVisitor();
 //        ScenarioLevelVisitor levelVisitor = new ScenarioLevelVisitor(2);
 //        ScenarioMissingActorVisitor missingActorVisitor = new ScenarioMissingActorVisitor();

@@ -12,13 +12,13 @@ import pl.put.poznan.checker.model.Step;
  * for some previously created Scenario class instance called my_scenario:
  * <pre>
  * {@code
- * ScenarioCountVisitor visitor = new ScenarioCountVisitor();
+ * ScenarioStepCountVisitor visitor = new ScenarioStepCountVisitor();
  * my_scenario.accept(visitor);
  * int result = visitor.getStepCount();
  *  }
  * </pre>
  */
-public class ScenarioCountVisitor implements Visitor{
+public class ScenarioStepCountVisitor implements Visitor{
     private int stepCount=0;
 
     /**
@@ -27,6 +27,7 @@ public class ScenarioCountVisitor implements Visitor{
      * @param scenario Scenario to be visited
      */
     public void visit(Scenario scenario) {
+        stepCount = 0;
     }
 
     /**

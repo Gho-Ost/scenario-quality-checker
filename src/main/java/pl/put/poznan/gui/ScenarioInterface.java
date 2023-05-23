@@ -135,7 +135,7 @@ public class ScenarioInterface extends JFrame {
                 }
 
                 if (chosenFunction.equals("Step counter")){
-                    ScenarioCountVisitor visitor = new ScenarioCountVisitor();
+                    ScenarioStepCountVisitor visitor = new ScenarioStepCountVisitor();
                     newScenario.accept(visitor);
 
                     String output = "{\"Step count\": " + visitor.getStepCount() + "}";
