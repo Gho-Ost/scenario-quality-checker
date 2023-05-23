@@ -50,7 +50,9 @@
               <font size="16"/>
               <model>
                 <item value="Step counter"/>
+                <item value="Actor step counter"/>
                 <item value="Keyword counter"/>
+                <item value="Rename actor"/>
                 <item value="Depth cutting"/>
                 <item value="Missing actor steps"/>
                 <item value="JSON to Text"/>

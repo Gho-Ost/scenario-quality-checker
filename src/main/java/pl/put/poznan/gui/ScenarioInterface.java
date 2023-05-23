@@ -41,6 +41,9 @@ public class ScenarioInterface extends JFrame {
     private JPanel outputResizePanel;
     private JButton downloadResultButton;
     private int cuttingLevel;
+    private String actor;
+    private String oldActor;
+    private String newActor;
 
     public static void main(String[] args){
         JFrame frame = new ScenarioInterface("Scenario Quality Checker");
@@ -181,6 +184,31 @@ public class ScenarioInterface extends JFrame {
                     String scenarioText = scenarioTextDownloadVisitor.getResult();
 
                     outputTextArea.setText(scenarioText);
+                }
+                else if (chosenFunction.equals("Rename actor")){
+                    oldActor = JOptionPane.showInputDialog(null, "Select actor to be renamed", "");
+                    newActor = JOptionPane.showInputDialog(null, "Select a new name", "");
+
+                    ScenarioActorRenameVisitor actorRenameVisitor = new ScenarioActorRenameVisitor(oldActor, newActor);
+                    newScenario.accept(actorRenameVisitor);
+
+                    Scenario result = actorRenameVisitor.getScenario();
+                    ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+                    try {
+                        String json = ow.writeValueAsString(result);
+                        outputTextArea.setText(json);
+                    } catch (JsonProcessingException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else if (chosenFunction.equals("Actor step counter")){
+                    actor = JOptionPane.showInputDialog(null, "Select an actor", "");
+
+                    ScenarioActorStepCountVisitor visitor = new ScenarioActorStepCountVisitor(actor);
+                    newScenario.accept(visitor);
+
+                    String output = "{\"" + actor + " step count\": " + visitor.getActorStepCount() + "}";
+                    outputTextArea.setText(output);
                 }
             }
         });
