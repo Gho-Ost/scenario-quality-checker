@@ -80,8 +80,6 @@ class ScenarioStepCountVisitorTest {
         ArrayList<Step> emptyArrayList = new ArrayList<Step>();
         Scenario scenario = new Scenario("emptyScenario",emptyArray, null,emptyArrayList);
 
-        Step newStep = new Step("actor0", "keyword0", "action0", null, "0");
-
         ScenarioStepCountVisitor visitor = new ScenarioStepCountVisitor();
 
         scenario.accept(visitor);
