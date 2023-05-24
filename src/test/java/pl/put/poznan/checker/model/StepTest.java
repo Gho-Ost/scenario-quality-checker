@@ -50,4 +50,17 @@ class StepTest {
 
 
     }
+
+    /**
+     * Testing method written to assert the correctness of the implementation of the "accept()"
+     * method in the Step. In this case testing behaviour for an empty step.
+     * Tested by creating a Mock visitor and checking the order of visited steps.
+     */
+    @Test
+    void acceptEmptySteps(){
+        Step step = new Step(null,null,null,null,null);
+        Visitor visitor = mock(Visitor.class);
+        step.accept(visitor);
+        verify(visitor, times(1)).visit(Mockito.any(Step.class));
+    }
 }

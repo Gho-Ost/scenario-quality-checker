@@ -58,4 +58,20 @@ class ScenarioTest {
         inOrder.verify(visitor).visit(step2_3_2);
 
     }
+
+    /**
+     * Testing method written to assert the correctness of the implementation of the "accept()"
+     * method in the Scenario. In this case testing an empty Scenario.
+     * Tested by creating a Mock visitor and checking the order of visited steps.
+     */
+    @Test
+    void acceptEmptyScenario(){
+        String[] emptyArray = new String[0];
+        ArrayList<Step> emptyArrayList = new ArrayList<Step>();
+        Scenario scenario = new Scenario("emptyScenario",emptyArray, null,emptyArrayList);
+        Visitor visitor = mock(Visitor.class);
+        scenario.accept(visitor);
+        verify(visitor, times(1)).visit(Mockito.any(Scenario.class));
+        verify(visitor, times(0)).visit(Mockito.any(Step.class));
+    }
 }
