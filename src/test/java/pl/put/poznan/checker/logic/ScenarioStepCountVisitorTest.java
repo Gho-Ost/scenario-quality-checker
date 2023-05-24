@@ -68,4 +68,23 @@ class ScenarioStepCountVisitorTest {
 
         assertEquals(10, visitor.getStepCount());
     }
+
+    /**
+     * Test for the visit() method of the ScenarioStepCountVisitor class
+     * with the assertion testing if the implemented visitor design pattern
+     * appropriately counts the number of steps in an empty Scenario.
+     */
+    @Test
+    void visitEmptyScenario() {
+        String[] emptyArray = new String[0];
+        ArrayList<Step> emptyArrayList = new ArrayList<Step>();
+        Scenario scenario = new Scenario("emptyScenario",emptyArray, null,emptyArrayList);
+
+        Step newStep = new Step("actor0", "keyword0", "action0", null, "0");
+
+        ScenarioStepCountVisitor visitor = new ScenarioStepCountVisitor();
+
+        scenario.accept(visitor);
+        assertEquals(0, visitor.getStepCount());
+    }
 }

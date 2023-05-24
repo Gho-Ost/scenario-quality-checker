@@ -115,4 +115,31 @@ class ScenarioActorStepCountVisitorTest {
 
         assertEquals(3, visitor.getActorStepCount());
     }
+
+    /**
+     * Test for the visit() method of the ScenarioActorStepCountVisitor class
+     * with the assertion testing if the implemented visitor design pattern
+     * appropriately counts the ActorStepCount for the case of handling a Scenario with
+     * null values for some actors and null passed as an argument to the visitor.
+     */
+    @Test
+    void scenarioWithNullArgument(){
+        Step step2_3_2 = new Step("actor0", "keyword0", "action0", null, "0");
+        Step step2_3_1 = new Step(null, "keyword0", "action0", null, "0");
+        Step step2_3 = new Step("actor0", "keyword0", "action0", new ArrayList<>(Arrays.asList(step2_3_1, step2_3_2)), "0");
+        Step step2_2 = new Step("actor1", "keyword0", "action0", null, "0");
+        Step step2_1 = new Step("actor2", "keyword0", "action0", null, "0");
+        Step step2 = new Step(null, "keyword0", "action0", new ArrayList<>(Arrays.asList(step2_1, step2_2, step2_3)), "0");
+        Step step1_2 = new Step("actor2", "keyword0", "action0", null, "0");
+        Step step1_1 = new Step("actor2", "keyword0", "action0", null, "0");
+        Step step1 = new Step(null, "keyword0", "action0", new ArrayList<>(Arrays.asList(step1_1, step1_2)), "0");
+        Step step0 = new Step("actor0", "keyword0", "action0", null, "0");
+        scenario = new Scenario("scenario0", new String[]{"actor0, actor1"}, "actor2",new ArrayList<>(Arrays.asList(step0, step1, step2)));
+
+        ScenarioActorStepCountVisitor visitor = new ScenarioActorStepCountVisitor(null);
+
+        scenario.accept(visitor);
+
+        assertEquals(0, visitor.getActorStepCount());
+    }
 }

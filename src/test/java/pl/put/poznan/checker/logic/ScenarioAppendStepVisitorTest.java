@@ -38,4 +38,28 @@ class ScenarioAppendStepVisitorTest {
 
         assertEquals(expectedList, actualList);
     }
+
+    /**
+     * Test for the visit() method of the ScenarioAppendStepVisitor class
+     * with the assertion testing if the implemented visitor design pattern
+     * appropriately appends a Step to an existing Scenario with an empty
+     * list of steps.
+     */
+    @Test
+    void visitEmptyScenario() {
+        String[] emptyArray = new String[0];
+        ArrayList<Step> emptyArrayList = new ArrayList<Step>();
+        Scenario scenario = new Scenario("emptyScenario",emptyArray, null,emptyArrayList);
+
+        Step newStep = new Step("actor0", "keyword0", "action0", null, "0");
+
+        ScenarioAppendStepVisitor visitor = new ScenarioAppendStepVisitor(newStep);
+
+        scenario.accept(visitor);
+
+        ArrayList<Step> expectedList = new ArrayList<>(Arrays.asList(newStep));
+        ArrayList<Step> actualList = visitor.getScenario().getSteps();
+
+        assertEquals(expectedList, actualList);
+    }
 }
