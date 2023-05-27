@@ -17,4 +17,7 @@ public class ScenarioStorage {
      */
     Map<String, Scenario> scenarios = new HashMap<String, Scenario>();
 
+    public void setScenarios(HashMap<String, Scenario> scenarios){
+        this.scenarios=scenarios;
+    }
 }
