@@ -76,7 +76,7 @@ public class ScenarioLevelVisitor implements Visitor{
     public void visit(Step step){
         Step stepCopy=new Step(step);
         int currentLevel=stepCopy.getStepLevel().split("\\.").length;
-        if(currentLevel==1) {
+        if(currentLevel==1 && maxLevel>0) {
             if (stepCopy.getSubsteps()!= null){
                 stepCopy = adjustStepDepth(stepCopy, 1);
             }
