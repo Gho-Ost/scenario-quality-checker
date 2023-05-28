@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.checker.logic.ScenarioDeleteStepVisitor;
 import pl.put.poznan.checker.model.Scenario;
 
+import java.util.Arrays;
+
 /**
  * REST controller responsible for deleting a step. Implemented in accordance with REST framework.
  */
@@ -33,8 +35,15 @@ public class DeleteScenarioStepController extends ScenarioController {
     @DeleteMapping(value="/scenarios/{title}/step/{stepLevel:.+}", produces="application/JSON")
     public Scenario deleteStep(@PathVariable("title")String title, @PathVariable("stepLevel")String stepLevel) {
         Scenario scenario = storage.scenarios.get(title);
+        ScenarioCheckerLogger.logger.info("Getting scenario of title{}", scenario.getTitle());
+        ScenarioCheckerLogger.logger.info("Deleting stepLevel{}", stepLevel);
         ScenarioDeleteStepVisitor deleteStepVisitor = new ScenarioDeleteStepVisitor(stepLevel);
         scenario.accept(deleteStepVisitor);
+
+        ScenarioCheckerLogger.logger.debug("Returning scenario with title: {} actors: {} systemActor: {}",
+                scenario.getTitle(), Arrays.toString(scenario.getActors()),
+                scenario.getSystemActor());
+        super.logger.logSteps(scenario.getSteps());
 
         return deleteStepVisitor.getScenario();
     }
