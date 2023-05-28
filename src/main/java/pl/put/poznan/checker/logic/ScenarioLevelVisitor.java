@@ -76,14 +76,24 @@ public class ScenarioLevelVisitor implements Visitor{
     public void visit(Step step){
         Step stepCopy=new Step(step);
         int currentLevel=stepCopy.getStepLevel().split("\\.").length;
-        if(currentLevel<=this.maxLevel){
-            if(currentLevel+1>this.maxLevel){
-                stepCopy.setSubsteps(null);
+        if(currentLevel==1 && maxLevel>0) {
+            if (stepCopy.getSubsteps()!= null){
+                stepCopy = adjustStepDepth(stepCopy, 1);
             }
-            if(currentLevel==1) {
-                this.steps.add(stepCopy);
+            this.steps.add(stepCopy);
+        }
+    }
+
+    private Step adjustStepDepth(Step step, int currentLevel) {
+        if (currentLevel<maxLevel && step.getSubsteps()!=null){
+            for (Step substep : step.getSubsteps()){
+                adjustStepDepth(substep, currentLevel+1);
             }
         }
+        else{
+            step.setSubsteps(null);
+        }
+        return step;
     }
 
     /**
@@ -91,7 +101,7 @@ public class ScenarioLevelVisitor implements Visitor{
      * @return scenario - containing the new truncated scenario
      */
     public Scenario getScenario(){
-        scenario.setSteps(this.steps);
-        return scenario;
+        this.scenario.setSteps(this.steps);
+        return this.scenario;
     }
 }
