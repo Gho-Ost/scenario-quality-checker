@@ -125,7 +125,7 @@
             <properties>
               <background color="-12500671"/>
               <borderPainted value="true"/>
-              <focusable value="true"/>
+              <focusable value="false"/>
               <font size="16"/>
               <foreground color="-4276546"/>
               <text value="Choose a file"/>
@@ -135,6 +135,8 @@
             <constraints/>
             <properties>
               <background color="-12500671"/>
+              <enabled value="true"/>
+              <focusable value="false"/>
               <font size="16"/>
               <foreground color="-4276546"/>
               <model>
@@ -184,7 +186,7 @@
             <properties>
               <background color="-12500671"/>
               <enabled value="true"/>
-              <focusable value="true"/>
+              <focusable value="false"/>
               <font size="16"/>
               <foreground color="-4276546"/>
               <text value="Download result"/>
@@ -194,7 +196,7 @@
             <constraints/>
             <properties>
               <background color="-12500671"/>
-              <focusable value="true"/>
+              <focusable value="false"/>
               <font size="16"/>
               <foreground color="-4276546"/>
               <text value="Info"/>
