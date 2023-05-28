@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.put.poznan.checker.logic.ScenarioActorRenameVisitor;
 import pl.put.poznan.checker.model.Scenario;
 
+import java.util.Arrays;
+
 /**
  * REST controller responsible for renaming an actor in a Scenario.
  * Implemented in accordance with REST framework.
@@ -39,7 +41,12 @@ public class GetScenarioRenameActorController extends ScenarioController {
         Scenario scenario = storage.scenarios.get(title);
 
         ScenarioActorRenameVisitor actorRenameVisitor = new ScenarioActorRenameVisitor(oldactor, newactor);
+        ScenarioCheckerLogger.logger.info("Renaming the specified Actor");
         scenario.accept(actorRenameVisitor);
+        ScenarioCheckerLogger.logger.debug("Returning scenario with title: {} actors: {} systemActor: {}",
+                scenario.getTitle(), Arrays.toString(scenario.getActors()),
+                scenario.getSystemActor());
+        super.logger.logSteps(scenario.getSteps());
         return actorRenameVisitor.getScenario();
     }
 }

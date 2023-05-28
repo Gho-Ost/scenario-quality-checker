@@ -46,6 +46,7 @@ public class GetRequestScenarioRenameActorController extends ScenarioController{
         try {
             JSONObject scenarioObj = new JSONObject(scenarioContent);
             newScenario = JSONParser.parseScenarioObject(scenarioObj);
+            ScenarioCheckerLogger.logger.info("Parsing Object");
             ScenarioCheckerLogger.logger.info("Received scenario with title: {} actors: {} systemActor: {}",
                     newScenario.getTitle(), Arrays.toString(newScenario.getActors()),
                     newScenario.getSystemActor());
@@ -55,7 +56,13 @@ public class GetRequestScenarioRenameActorController extends ScenarioController{
         }
 
         ScenarioActorRenameVisitor actorRenameVisitor = new ScenarioActorRenameVisitor(oldactor, newactor);
+        ScenarioCheckerLogger.logger.info("Renaming the specified Actor");
         newScenario.accept(actorRenameVisitor);
+        ScenarioCheckerLogger.logger.debug("Returning scenario with title: {} actors: {} systemActor: {}",
+                newScenario.getTitle(), Arrays.toString(newScenario.getActors()),
+                newScenario.getSystemActor());
+        super.logger.logSteps(newScenario.getSteps());
+
         return actorRenameVisitor.getScenario();
     }
 }

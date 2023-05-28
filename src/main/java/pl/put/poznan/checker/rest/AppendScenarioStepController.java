@@ -12,6 +12,8 @@ import pl.put.poznan.checker.logic.ScenarioAppendStepVisitor;
 import pl.put.poznan.checker.model.Scenario;
 import pl.put.poznan.checker.model.Step;
 
+import java.util.Arrays;
+
 /**
  * REST controller responsible for appending a step to an existing scenario.
  * Implemented in accordance with REST framework.
@@ -39,6 +41,7 @@ public class AppendScenarioStepController extends ScenarioController {
     @PostMapping(value="/scenarios/{title}/step", produces="application/JSON")
     public Scenario appendScenario(@PathVariable("title")String title, @RequestBody String stepContent) {
         Scenario newScenario = storage.scenarios.get(title);;
+        ScenarioCheckerLogger.logger.info("Getting scenario of title{}", newScenario.getTitle());
         Step newStep = null;
         JSONArray stepArray = new JSONArray();
 
@@ -53,6 +56,10 @@ public class AppendScenarioStepController extends ScenarioController {
 
         ScenarioAppendStepVisitor appendStepVisitor = new ScenarioAppendStepVisitor(newStep);
         newScenario.accept(appendStepVisitor);
+        ScenarioCheckerLogger.logger.debug("Returning scenario with title: {} actors: {} systemActor: {}",
+                newScenario.getTitle(), Arrays.toString(newScenario.getActors()),
+                newScenario.getSystemActor());
+        super.logger.logSteps(newScenario.getSteps());
 
         return appendStepVisitor.getScenario();
     }
