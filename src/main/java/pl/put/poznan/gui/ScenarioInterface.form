@@ -5,114 +5,32 @@
     <constraints>
       <xy x="20" y="20" width="1104" height="1117"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-12500671"/>
+      <foreground color="-4276546"/>
+      <preferredSize width="1920" height="1280"/>
+    </properties>
     <border type="empty">
       <size top="10" left="10" bottom="10" right="10"/>
     </border>
     <children>
       <vspacer id="48aa5">
         <constraints>
-          <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <grid id="bb96b" binding="optionsPanel" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="100" height="300"/>
-            <preferred-size width="300" height="480"/>
-            <maximum-size width="300" height="480"/>
-          </grid>
-        </constraints>
-        <properties>
-          <enabled value="true"/>
-        </properties>
-        <border type="none" title="Options">
-          <font size="16"/>
-          <title-color color="-16777216"/>
-        </border>
-        <children>
-          <component id="4fb2b" class="javax.swing.JButton" binding="chooseFileButton">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <focusable value="false"/>
-              <font size="16"/>
-              <text value="Choose a file"/>
-            </properties>
-          </component>
-          <component id="ae80b" class="javax.swing.JComboBox" binding="functionBox">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="16"/>
-              <model>
-                <item value="Step counter"/>
-                <item value="Actor step counter"/>
-                <item value="Keyword counter"/>
-                <item value="Rename actor"/>
-                <item value="Depth cutting"/>
-                <item value="Missing actor steps"/>
-                <item value="JSON to Text"/>
-              </model>
-              <toolTipText value="Select a function"/>
-            </properties>
-          </component>
-          <component id="4f23b" class="javax.swing.JButton" binding="clearInputButton">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <focusable value="false"/>
-              <font size="16"/>
-              <text value="Clear input"/>
-            </properties>
-          </component>
-          <component id="88ed2" class="javax.swing.JButton" binding="clearOutputButton" default-binding="true">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <focusable value="false"/>
-              <font size="16"/>
-              <text value="Clear output"/>
-            </properties>
-          </component>
-          <component id="9d471" class="javax.swing.JButton" binding="executeFunctionButton" default-binding="true">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <focusable value="false"/>
-              <font size="16"/>
-              <text value="Execute function"/>
-            </properties>
-          </component>
-          <component id="840e6" class="javax.swing.JButton" binding="downloadResultButton" default-binding="true">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <enabled value="true"/>
-              <focusable value="false"/>
-              <font size="16"/>
-              <text value="Download result"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
       <grid id="51ecd" binding="titlePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <minimum-size width="50" height="30"/>
-            <preferred-size width="1100" height="30"/>
+            <preferred-size width="1100" height="114"/>
             <maximum-size width="1100" height="30"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-12500671"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="9ca61" class="javax.swing.JLabel" binding="titleLabel">
@@ -120,7 +38,10 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-12500671"/>
+              <enabled value="true"/>
               <font size="24"/>
+              <foreground color="-4276546"/>
               <text value="Scenario Quality Checker"/>
             </properties>
           </component>
@@ -134,16 +55,21 @@
             <maximum-size width="2000" height="2000"/>
           </grid>
         </constraints>
-        <properties/>
-        <border type="none" title="Input">
+        <properties>
+          <background color="-12500671"/>
+          <foreground color="-4276546"/>
+        </properties>
+        <border type="etched" title="Input">
           <font size="16"/>
-          <title-color color="-16777216"/>
+          <title-color color="-4278340"/>
         </border>
         <children>
           <component id="d4399" class="javax.swing.JTextArea" binding="inputTextArea">
             <constraints/>
             <properties>
+              <background color="-12500671"/>
               <font size="16"/>
+              <foreground color="-4276546"/>
               <text value="{&#10;&#9;&quot;title&quot;: &quot;Sample Scenario&quot;,&#10;&#9;&quot;actors&quot;: [&quot;Librarian&quot;],&#10;&#9;&quot;systemActor&quot;: &quot;System&quot;,&#10;&#9;&quot;steps&quot;: [&#10;&#9;&#9;{&quot;Librarian&quot;: &quot;selects options to add a new book item&quot;},&#10;&#9;&#9;&quot;A form is displayed&quot;,&#10;&#9;&#9;{&quot;Librarian&quot;: &quot;provides the details of the book.&quot;},&#10;&#9;&#9;{&quot;IF&quot;: {&quot;Librarian&quot;: &quot;wishes to add copies of the book&quot;}},&#10;&#9;&#9;[&#10;&#9;&#9;&#9;{&quot;Librarian&quot;: &quot;chooses to define instances&quot;},&#10;&#9;&#9;&#9;{&quot;System&quot;: &quot;presents defined instances&quot;},&#10;&#9;&#9;&#9;{&quot;FOR EACH&quot;: &quot;instance:&quot;},&#10;&#9;&#9;&#9;[&#10;&#9;&#9;&#9;&#9;{&quot;Librarian&quot;: &quot;chooses to add an instance&quot;},&#10;&#9;&#9;&#9;&#9;{&quot;System&quot;: &quot;prompts to enter the instance details&quot;},&#10;&#9;&#9;&#9;&#9;{&quot;Librarian&quot;: &quot;enters the instance details and confirms them.&quot;},&#10;&#9;&#9;&#9;&#9;{&quot;System&quot;: &quot;informs about the correct addition of an instance and presents the updated list of instances.&quot;}&#10;&#9;&#9;&#9;]&#10;&#9;&#9;],&#10;&#9;&#9;{&quot;Librarian&quot;: &quot;confirms book addition.&quot;},&#10;&#9;&#9;{&quot;System&quot;: &quot;informs about the correct addition of the book.&quot;}&#10;&#9;]&#10;}"/>
             </properties>
           </component>
@@ -151,55 +77,126 @@
       </scrollpane>
       <scrollpane id="3b3e6" binding="outputScrollPane">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <minimum-size width="200" height="100"/>
             <preferred-size width="800" height="500"/>
             <maximum-size width="2000" height="2000"/>
           </grid>
         </constraints>
-        <properties/>
-        <border type="none" title="Output">
+        <properties>
+          <background color="-12500671"/>
+          <enabled value="true"/>
+          <foreground color="-4278340"/>
+        </properties>
+        <border type="etched" title="Output">
           <font size="16"/>
-          <title-color color="-16777216"/>
+          <title-color color="-4276546"/>
         </border>
         <children>
           <component id="27a38" class="javax.swing.JTextArea" binding="outputTextArea">
             <constraints/>
             <properties>
+              <background color="-12500671"/>
               <editable value="false"/>
               <font size="16"/>
+              <foreground color="-4276546"/>
               <text value=""/>
             </properties>
           </component>
         </children>
       </scrollpane>
-      <grid id="d28da" binding="outputResizePanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <grid id="bb96b" binding="optionsPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="100" height="300"/>
-            <preferred-size width="300" height="480"/>
-            <maximum-size width="300" height="480"/>
-          </grid>
+          <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
-        <border type="none"/>
+        <properties>
+          <autoscrolls value="false"/>
+          <background color="-12500671"/>
+          <enabled value="true"/>
+          <foreground color="-4276546"/>
+        </properties>
+        <border type="etched" title="Options">
+          <font size="16"/>
+          <title-color color="-4276546"/>
+        </border>
         <children>
-          <vspacer id="c9db">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <component id="62d30" class="javax.swing.JButton" binding="infoButton">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
-                <minimum-size width="100" height="50"/>
-                <preferred-size width="290" height="50"/>
-              </grid>
-            </constraints>
+          <component id="4fb2b" class="javax.swing.JButton" binding="chooseFileButton">
+            <constraints/>
             <properties>
+              <background color="-12500671"/>
+              <borderPainted value="true"/>
+              <focusable value="true"/>
+              <font size="16"/>
+              <foreground color="-4276546"/>
+              <text value="Choose a file"/>
+            </properties>
+          </component>
+          <component id="ae80b" class="javax.swing.JComboBox" binding="functionBox">
+            <constraints/>
+            <properties>
+              <background color="-12500671"/>
+              <font size="16"/>
+              <foreground color="-4276546"/>
+              <model>
+                <item value="Step counter"/>
+                <item value="Actor step counter"/>
+                <item value="Keyword counter"/>
+                <item value="Rename actor"/>
+                <item value="Depth cutting"/>
+                <item value="Missing actor steps"/>
+                <item value="JSON to Text"/>
+              </model>
+              <toolTipText value="Select a function"/>
+            </properties>
+          </component>
+          <component id="4f23b" class="javax.swing.JButton" binding="clearInputButton">
+            <constraints/>
+            <properties>
+              <background color="-12500671"/>
               <focusable value="false"/>
               <font size="16"/>
+              <foreground color="-4276546"/>
+              <text value="Clear input"/>
+            </properties>
+          </component>
+          <component id="88ed2" class="javax.swing.JButton" binding="clearOutputButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <background color="-12500671"/>
+              <focusable value="false"/>
+              <font size="16"/>
+              <foreground color="-4276546"/>
+              <text value="Clear output"/>
+            </properties>
+          </component>
+          <component id="9d471" class="javax.swing.JButton" binding="executeFunctionButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <background color="-12500671"/>
+              <focusable value="false"/>
+              <font size="16"/>
+              <foreground color="-4276546"/>
+              <text value="Execute function"/>
+            </properties>
+          </component>
+          <component id="840e6" class="javax.swing.JButton" binding="downloadResultButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <background color="-12500671"/>
+              <enabled value="true"/>
+              <focusable value="true"/>
+              <font size="16"/>
+              <foreground color="-4276546"/>
+              <text value="Download result"/>
+            </properties>
+          </component>
+          <component id="62d30" class="javax.swing.JButton" binding="infoButton">
+            <constraints/>
+            <properties>
+              <background color="-12500671"/>
+              <focusable value="true"/>
+              <font size="16"/>
+              <foreground color="-4276546"/>
               <text value="Info"/>
             </properties>
           </component>

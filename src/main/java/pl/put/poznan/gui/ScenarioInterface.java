@@ -9,6 +9,8 @@ import pl.put.poznan.checker.logic.*;
 import pl.put.poznan.checker.model.Scenario;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -38,23 +40,23 @@ public class ScenarioInterface extends JFrame {
     private JTextArea inputTextArea;
     private JTextArea outputTextArea;
     private JButton executeFunctionButton;
-    private JPanel outputResizePanel;
     private JButton downloadResultButton;
     private int cuttingLevel;
     private String actor;
     private String oldActor;
     private String newActor;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         JFrame frame = new ScenarioInterface("Scenario Quality Checker");
         frame.setVisible(true);
     }
 
     /**
      * ScenarioInterface constructor responsible for window logic
+     *
      * @param title title to be displayed in the window
      */
-    public ScenarioInterface(String title){
+    public ScenarioInterface(String title) {
         super(title);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,7 +64,7 @@ public class ScenarioInterface extends JFrame {
         this.pack();
         this.setResizable(true);
         this.setMinimumSize(new Dimension(700, 700));
-
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         /**
          * Choosing and opening a file
          */
@@ -76,7 +78,7 @@ public class ScenarioInterface extends JFrame {
                 fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("*.JSON", "JSON"));
                 fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("*.txt", "txt"));
                 int response = fileChooser.showOpenDialog(null);
-                if (response == JFileChooser.APPROVE_OPTION){
+                if (response == JFileChooser.APPROVE_OPTION) {
                     File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                     try {
                         FileReader reader = new FileReader(file);
@@ -137,21 +139,19 @@ public class ScenarioInterface extends JFrame {
                     throw new RuntimeException(e1);
                 }
 
-                if (chosenFunction.equals("Step counter")){
+                if (chosenFunction.equals("Step counter")) {
                     ScenarioStepCountVisitor visitor = new ScenarioStepCountVisitor();
                     newScenario.accept(visitor);
 
                     String output = "{\"Step count\": " + visitor.getStepCount() + "}";
                     outputTextArea.setText(output);
-                }
-                else if (chosenFunction.equals("Keyword counter")){
+                } else if (chosenFunction.equals("Keyword counter")) {
                     ScenarioKeyWordCountVisitor visitor = new ScenarioKeyWordCountVisitor();
                     newScenario.accept(visitor);
 
                     String output = "{\"Keyword count\": " + visitor.getKeyWordCount() + "}";
                     outputTextArea.setText(output);
-                }
-                else if (chosenFunction.equals("Depth cutting")){
+                } else if (chosenFunction.equals("Depth cutting")) {
                     cuttingLevel = Integer.parseInt(
                             JOptionPane.showInputDialog(null, "Select cutting level:", 1));
 
@@ -166,8 +166,7 @@ public class ScenarioInterface extends JFrame {
                     } catch (JsonProcessingException ex) {
                         throw new RuntimeException(ex);
                     }
-                }
-                else if (chosenFunction.equals("Missing actor steps")){
+                } else if (chosenFunction.equals("Missing actor steps")) {
                     ScenarioMissingActorVisitor visitor = new ScenarioMissingActorVisitor();
                     newScenario.accept(visitor);
                     ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -177,15 +176,13 @@ public class ScenarioInterface extends JFrame {
                     } catch (JsonProcessingException ex) {
                         throw new RuntimeException(ex);
                     }
-                }
-                else if (chosenFunction.equals("JSON to Text")){
-                    ScenarioTextDownloadVisitor scenarioTextDownloadVisitor= new ScenarioTextDownloadVisitor();
+                } else if (chosenFunction.equals("JSON to Text")) {
+                    ScenarioTextDownloadVisitor scenarioTextDownloadVisitor = new ScenarioTextDownloadVisitor();
                     newScenario.accept(scenarioTextDownloadVisitor);
                     String scenarioText = scenarioTextDownloadVisitor.getResult();
 
                     outputTextArea.setText(scenarioText);
-                }
-                else if (chosenFunction.equals("Rename actor")){
+                } else if (chosenFunction.equals("Rename actor")) {
                     oldActor = JOptionPane.showInputDialog(null, "Select actor to be renamed", "");
                     newActor = JOptionPane.showInputDialog(null, "Select a new name", "");
 
@@ -200,8 +197,7 @@ public class ScenarioInterface extends JFrame {
                     } catch (JsonProcessingException ex) {
                         throw new RuntimeException(ex);
                     }
-                }
-                else if (chosenFunction.equals("Actor step counter")){
+                } else if (chosenFunction.equals("Actor step counter")) {
                     actor = JOptionPane.showInputDialog(null, "Select an actor", "");
 
                     ScenarioActorStepCountVisitor visitor = new ScenarioActorStepCountVisitor(actor);
@@ -226,7 +222,7 @@ public class ScenarioInterface extends JFrame {
                 fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("*.JSON", "JSON"));
                 fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("*.txt", "txt"));
                 int response = fileChooser.showSaveDialog(null);
-                if (response == JFileChooser.APPROVE_OPTION){
+                if (response == JFileChooser.APPROVE_OPTION) {
                     File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                     try {
                         FileWriter fw = new FileWriter(file, false);
