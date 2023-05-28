@@ -16,6 +16,30 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ScenarioLevelVisitorTest {
     private Scenario testScenario;
+    private int maxDepth=-999;
+    private int minDepth=999;
+
+    private void getMaxSubsteps(ArrayList<Step> steps){
+        for(Step testStep: steps){
+            if(testStep.getStepLevel().length()>=maxDepth){
+                this.maxDepth=testStep.getStepLevel().length();
+            }
+            if(testStep.getSubsteps()!=null){
+                getMaxSubsteps(testStep.getSubsteps());
+            }
+        }
+    }
+
+    private void getMinSubsteps(ArrayList<Step> steps){
+        for(Step testStep: steps){
+            if(testStep.getStepLevel().length()<=minDepth){
+                this.minDepth=testStep.getStepLevel().length();
+            }
+            if(testStep.getSubsteps()!=null){
+                getMaxSubsteps(testStep.getSubsteps());
+            }
+        }
+    }
 
     /**
      * Method responsible for setting up the appropriate variables for future tests.
@@ -60,13 +84,21 @@ public class ScenarioLevelVisitorTest {
      * In this case, the depth of two is being tested by setting it manually.
      */
     @Test
-    void visitDepthTwo(){
+    void visitDepthTwo() {
         ScenarioLevelVisitor visitor = new ScenarioLevelVisitor(2);
         testScenario.accept(visitor);
         Scenario newScenario = visitor.getScenario();
-        for(Step testStep: newScenario.getSteps()){
-            assertTrue(testStep.getStepLevel().length()>=1);
-            assertTrue(testStep.getStepLevel().length()<=3);
+        for (Step testStep : newScenario.getSteps()) {
+            assertTrue(testStep.getStepLevel().length() >= 1);
+            assertTrue(testStep.getStepLevel().length() <= 3);
+            if (testStep.getSubsteps() != null) {
+                this.maxDepth = -999;
+                this.minDepth = 999;
+                this.getMaxSubsteps(testStep.getSubsteps());
+                this.getMinSubsteps(testStep.getSubsteps());
+                assertTrue(this.maxDepth <= 3);
+                assertTrue(this.minDepth >= 1);
+            }
         }
     }
 
@@ -77,6 +109,7 @@ public class ScenarioLevelVisitorTest {
      * In this case, the depth of zero is being selected by setting it
      * manually.
      */
+
     @Test
     void visitDepthZero(){
         ScenarioLevelVisitor visitor = new ScenarioLevelVisitor(0);
@@ -100,6 +133,14 @@ public class ScenarioLevelVisitorTest {
         for(Step testStep: newScenario.getSteps()){
             assertTrue(testStep.getStepLevel().length()>=1);
             assertTrue(testStep.getStepLevel().length()<=5);
+            if(testStep.getSubsteps()!=null){
+                this.maxDepth=-999;
+                this.minDepth=999;
+                this.getMaxSubsteps(testStep.getSubsteps());
+                this.getMinSubsteps(testStep.getSubsteps());
+                assertTrue(this.maxDepth<=5);
+                assertTrue(this.minDepth>=1);
+            }
         }
     }
 
