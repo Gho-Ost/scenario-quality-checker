@@ -12,13 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class GetScenarioRenameActorControllerTest {
+public class AppendScenarioStepControllerTest {
 
     @Test
-    public void testGetScenarioRenameActor() {
+    public void testAppendScenarioStep() {
         String title = "testTitle";
-        String old_actor="actor0";
-        String new_actor="new_actor";
         Step step2_3_2 = new Step("actor0", "keyword0", "action0", null, "0");
         Step step2_3_1 = new Step("actor1", "keyword0", "action0", null, "0");
         Step step2_3 = new Step("actor0", "keyword0", "action0", new ArrayList<>(Arrays.asList(step2_3_1, step2_3_2)), "0");
@@ -37,18 +35,9 @@ public class GetScenarioRenameActorControllerTest {
         HashMap<String, Scenario> scenarios = mock(HashMap.class);
         when(scenarios.get(title)).thenReturn(scenario);
         storage.setScenarios(scenarios);
-        GetScenarioRenameActorController controller = new GetScenarioRenameActorController(storage,logger);
-
-        Scenario newScenario = controller.getScenariosRenameActor(title,old_actor,new_actor);
-        assertEquals("new_actor", step2_3_2.getActor());
-        assertEquals("actor1", step2_3_1.getActor());
-        assertEquals("new_actor", step2_3.getActor());
-        assertEquals(null, step2_2.getActor());
-        assertEquals("actor2", step2_1.getActor());
-        assertEquals("actor1", step2.getActor());
-        assertEquals(null, step1_2.getActor());
-        assertEquals("actor2", step1_1.getActor());
-        assertEquals("actor1", step1.getActor());
-        assertEquals(null, step0.getActor());
+        AppendScenarioStepController controller = new AppendScenarioStepController(storage,logger);
+        String newStep = "{\"Librarian\": \"provides the details of the book.\"}";
+        Scenario newScenario = controller.appendScenario(title,newStep);
+        assertEquals(4,newScenario.getSteps().size());
     }
 }
