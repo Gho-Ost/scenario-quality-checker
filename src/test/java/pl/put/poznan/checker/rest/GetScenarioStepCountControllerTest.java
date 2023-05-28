@@ -12,8 +12,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * Testing class implemented to test the functionality of GetScenarioStepCountController.
+ * Tested using JUnit and Mockito libraries to simulate behaviour of REST controller
+ * class independently of storage and logger class instances.
+ */
 public class GetScenarioStepCountControllerTest {
 
+    /**
+     * Testing method meant to test the functionality of counting the number of Steps of a Scenario
+     * present in REST implementation. The test is performed with help of JUnit and
+     * Mockito libraries.
+     */
     @Test
     public void testGetScenarioStepCount() {
         String title = "testTitle";

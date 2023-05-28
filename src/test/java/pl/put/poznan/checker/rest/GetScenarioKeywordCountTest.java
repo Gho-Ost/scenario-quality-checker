@@ -12,8 +12,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * Testing class implemented to test the functionality of GetScenarioKeywordCount.
+ * Tested using JUnit and Mockito libraries to simulate behaviour of REST controller
+ * class independently of storage and logger class instances.
+ */
 public class GetScenarioKeywordCountTest {
 
+    /**
+     * Testing method meant to test the functionality of calculating Scenario's key word count
+     * present in REST implementation. The test is performed with help of JUnit and
+     * Mockito libraries.
+     */
     @Test
     public void testGetKeyWordCount() {
         String title = "testTitle";

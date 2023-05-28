@@ -12,8 +12,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * Testing class implemented to test the functionality of GetScenarioRenameActorController.
+ * Tested using JUnit and Mockito libraries to simulate behaviour of REST controller
+ * class independently of storage and logger class instances.
+ */
 public class GetScenarioRenameActorControllerTest {
 
+    /**
+     * Testing method meant to test the functionality of renaming an Actor in a Scenario
+     * present in REST implementation. The test is performed with help of JUnit and
+     * Mockito libraries.
+     */
     @Test
     public void testGetScenarioRenameActor() {
         String title = "testTitle";
