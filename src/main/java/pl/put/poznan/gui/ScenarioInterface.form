@@ -149,6 +149,16 @@
               <toolTipText value="Select a function"/>
             </properties>
           </component>
+          <component id="9d471" class="javax.swing.JButton" binding="executeFunctionButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <background color="-12500671"/>
+              <focusable value="false"/>
+              <font size="16"/>
+              <foreground color="-4276546"/>
+              <text value="Execute function"/>
+            </properties>
+          </component>
           <component id="4f23b" class="javax.swing.JButton" binding="clearInputButton">
             <constraints/>
             <properties>
@@ -167,16 +177,6 @@
               <font size="16"/>
               <foreground color="-4276546"/>
               <text value="Clear output"/>
-            </properties>
-          </component>
-          <component id="9d471" class="javax.swing.JButton" binding="executeFunctionButton" default-binding="true">
-            <constraints/>
-            <properties>
-              <background color="-12500671"/>
-              <focusable value="false"/>
-              <font size="16"/>
-              <foreground color="-4276546"/>
-              <text value="Execute function"/>
             </properties>
           </component>
           <component id="840e6" class="javax.swing.JButton" binding="downloadResultButton" default-binding="true">

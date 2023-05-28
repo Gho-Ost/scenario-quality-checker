@@ -29,7 +29,8 @@ public class InfoWindow extends JFrame {
         infoTextArea.append("\n    - Press the \"Clear input\" button to clear \"Input\" area");
         infoTextArea.append("\n    - Press the \"Clear output\" button to clear \"Output\" area");
         infoTextArea.append("\n    - Press the \"Download\" button to save \"Output\" area result as a .txt or .JSON file");
-
+        infoTextArea.setForeground(new Color(190,190,190));
+        infoTextArea.setBackground(new Color(65,65,65));
         this.add(infoTextArea);
     }
 }
