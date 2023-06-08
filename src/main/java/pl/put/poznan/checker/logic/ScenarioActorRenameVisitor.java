@@ -3,10 +3,6 @@ package pl.put.poznan.checker.logic;
 import pl.put.poznan.checker.model.Scenario;
 import pl.put.poznan.checker.model.Step;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Class Responsible for renaming an actor according to a new name
  * specified by the user in accordance with
@@ -29,7 +25,6 @@ public class ScenarioActorRenameVisitor implements Visitor {
 
 
     private Scenario scenario;
-    private ArrayList<Step> steps;
 
     /**
      * Constructor for the ScenarioActorVisitor class, takes two arguments.

@@ -3,7 +3,6 @@ package pl.put.poznan.checker.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
 import pl.put.poznan.checker.model.Step;
 
 import java.util.ArrayList;

@@ -9,8 +9,6 @@ import pl.put.poznan.checker.logic.*;
 import pl.put.poznan.checker.model.Scenario;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;

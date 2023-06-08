@@ -5,11 +5,9 @@ import org.mockito.InOrder;
 import org.mockito.Mockito;
 import pl.put.poznan.checker.logic.Visitor;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**

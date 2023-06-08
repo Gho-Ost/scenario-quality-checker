@@ -3,13 +3,11 @@ package pl.put.poznan.checker.model;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
-import pl.put.poznan.checker.logic.Visitable;
 import pl.put.poznan.checker.logic.Visitor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
