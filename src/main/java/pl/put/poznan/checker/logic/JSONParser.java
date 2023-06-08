@@ -33,7 +33,6 @@ public class JSONParser {
         for (int i = 0; i < actorsArray.length(); i++) {
             actors[i] = actorsArray.getString(i);
         }
-
         ArrayList<Step> steps = parseScenarioSteps(scenarioSteps, "1", 0);
 
         return new Scenario(title, actors, systemActor, steps);
