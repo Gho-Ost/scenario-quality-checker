@@ -102,7 +102,6 @@ public class JSONParser {
             }
 
             newSteps.add(new Step(actor, keyword, action, substeps, stepLevel));
-
             String[] splitStepLevel = stepLevel.split("\\.");
 
             if (splitStepLevel.length > 0) {
